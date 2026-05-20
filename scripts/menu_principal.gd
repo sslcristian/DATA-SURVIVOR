@@ -1,7 +1,7 @@
 extends Control
 
-@onready var btn_iniciar : Button = $VBox/BtnIniciar
-@onready var btn_salir   : Button = $VBox/BtnSalir
+@onready var btn_iniciar : Button = $BtnIniciar
+@onready var btn_salir   : Button = $BtnSalir
 
 func _ready() -> void:
 	btn_iniciar.pressed.connect(_on_iniciar)
