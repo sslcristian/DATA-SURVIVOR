@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dpfinal001"]
+
+[ext_resource type="Script" path="res://scripts/pantalla_final.gd" id="1_script"]
+
+[node name="PantallaFinal" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.05, 0.1, 1)
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -150.0
+offset_right = 180.0
+offset_bottom = 150.0
+theme_override_constants/separation = 20
+
+[node name="LabelTitulo" type="Label" parent="VBox"]
+text = "RESULTADO"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 40
+
+[node name="LabelMensaje" type="Label" parent="VBox"]
+text = "..."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Separador" type="HSeparator" parent="VBox"]
+
+[node name="BtnReiniciar" type="Button" parent="VBox"]
+text = "VOLVER A INTENTAR"
+custom_minimum_size = Vector2(360, 50)
+
+[node name="BtnMenu" type="Button" parent="VBox"]
+text = "MENÚ PRINCIPAL"
+custom_minimum_size = Vector2(360, 50)

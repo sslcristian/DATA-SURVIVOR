@@ -1,0 +1,200 @@
+[gd_scene format=3 uid="uid://dhud000001"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_HUD"]
+bg_color = Color(0.04, 0.06, 0.04, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.80, 0.42, 0.04, 1.0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_SEP"]
+bg_color = Color(0.80, 0.42, 0.04, 0.55)
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_MSG"]
+bg_color = Color(0.03, 0.04, 0.02, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.95, 0.82, 0.08, 1.0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+content_margin_left = 14.0
+content_margin_top = 7.0
+content_margin_right = 14.0
+content_margin_bottom = 7.0
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_script")
+
+[node name="PanelHUD" type="PanelContainer" parent="."]
+offset_left = 4.0
+offset_top = 4.0
+custom_minimum_size = Vector2(300, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_HUD")
+
+[node name="VBox" type="VBoxContainer" parent="PanelHUD"]
+theme_override_constants/separation = 4
+
+[node name="FilaVida" type="HBoxContainer" parent="PanelHUD/VBox"]
+theme_override_constants/separation = 2
+
+[node name="Corazon1" type="TextureRect" parent="PanelHUD/VBox/FilaVida"]
+custom_minimum_size = Vector2(22, 22)
+size_flags_horizontal = 0
+expand_mode = 0
+stretch_mode = 5
+
+[node name="Corazon2" type="TextureRect" parent="PanelHUD/VBox/FilaVida"]
+custom_minimum_size = Vector2(22, 22)
+size_flags_horizontal = 0
+expand_mode = 0
+stretch_mode = 5
+
+[node name="Corazon3" type="TextureRect" parent="PanelHUD/VBox/FilaVida"]
+custom_minimum_size = Vector2(22, 22)
+size_flags_horizontal = 0
+expand_mode = 0
+stretch_mode = 5
+
+[node name="Corazon4" type="TextureRect" parent="PanelHUD/VBox/FilaVida"]
+custom_minimum_size = Vector2(22, 22)
+size_flags_horizontal = 0
+expand_mode = 0
+stretch_mode = 5
+
+[node name="Corazon5" type="TextureRect" parent="PanelHUD/VBox/FilaVida"]
+custom_minimum_size = Vector2(22, 22)
+size_flags_horizontal = 0
+expand_mode = 0
+stretch_mode = 5
+
+[node name="Sep1" type="HSeparator" parent="PanelHUD/VBox"]
+theme_override_styles/separator = SubResource("StyleBoxFlat_SEP")
+
+[node name="FilaStats" type="HBoxContainer" parent="PanelHUD/VBox"]
+theme_override_constants/separation = 4
+
+[node name="LabelAtk" type="Label" parent="PanelHUD/VBox/FilaStats"]
+text = "ATK"
+size_flags_horizontal = 0
+vertical_alignment = 1
+theme_override_colors/font_color = Color(1.0, 0.50, 0.05, 1.0)
+theme_override_font_sizes/font_size = 11
+
+[node name="PipsDanio" type="HBoxContainer" parent="PanelHUD/VBox/FilaStats"]
+size_flags_horizontal = 0
+alignment = 1
+theme_override_constants/separation = 2
+
+[node name="Pip1" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDanio"]
+custom_minimum_size = Vector2(22, 14)
+size_flags_horizontal = 0
+expand_mode = 0
+stretch_mode = 2
+
+[node name="Pip2" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDanio"]
+custom_minimum_size = Vector2(22, 14)
+size_flags_horizontal = 0
+expand_mode = 0
+stretch_mode = 2
+
+[node name="Pip3" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDanio"]
+custom_minimum_size = Vector2(22, 14)
+size_flags_horizontal = 0
+expand_mode = 0
+stretch_mode = 2
+
+[node name="Pip4" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDanio"]
+custom_minimum_size = Vector2(22, 14)
+size_flags_horizontal = 0
+expand_mode = 0
+stretch_mode = 2
+
+[node name="Pip5" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDanio"]
+custom_minimum_size = Vector2(22, 14)
+size_flags_horizontal = 0
+expand_mode = 0
+stretch_mode = 2
+
+[node name="Espacio" type="Control" parent="PanelHUD/VBox/FilaStats"]
+custom_minimum_size = Vector2(4, 0)
+size_flags_horizontal = 3
+
+[node name="LabelDef" type="Label" parent="PanelHUD/VBox/FilaStats"]
+text = "DEF"
+size_flags_horizontal = 0
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.30, 0.70, 1.0, 1.0)
+theme_override_font_sizes/font_size = 11
+
+[node name="PipsDefensa" type="HBoxContainer" parent="PanelHUD/VBox/FilaStats"]
+size_flags_horizontal = 0
+alignment = 1
+theme_override_constants/separation = 2
+
+[node name="PipDef1" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDefensa"]
+custom_minimum_size = Vector2(22, 14)
+size_flags_horizontal = 0
+expand_mode = 0
+stretch_mode = 2
+
+[node name="PipDef2" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDefensa"]
+custom_minimum_size = Vector2(22, 14)
+size_flags_horizontal = 0
+expand_mode = 0
+stretch_mode = 2
+
+[node name="PipDef3" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDefensa"]
+custom_minimum_size = Vector2(22, 14)
+size_flags_horizontal = 0
+expand_mode = 0
+stretch_mode = 2
+
+[node name="PipDef4" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDefensa"]
+custom_minimum_size = Vector2(22, 14)
+size_flags_horizontal = 0
+expand_mode = 0
+stretch_mode = 2
+
+[node name="Sep2" type="HSeparator" parent="PanelHUD/VBox"]
+theme_override_styles/separator = SubResource("StyleBoxFlat_SEP")
+
+[node name="LabelArma" type="Label" parent="PanelHUD/VBox"]
+text = "ARMA: Rifle"
+theme_override_colors/font_color = Color(0.68, 0.88, 0.52, 1.0)
+theme_override_font_sizes/font_size = 11
+
+[node name="TopCenter" type="CenterContainer" parent="."]
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_bottom = 50.0
+
+[node name="PanelMensaje" type="PanelContainer" parent="TopCenter"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_MSG")
+
+[node name="LabelMensaje" type="Label" parent="TopCenter/PanelMensaje"]
+text = ""
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(1.0, 0.90, 0.10, 1.0)
+theme_override_font_sizes/font_size = 15
+theme_override_constants/outline_size = 2
+theme_override_colors/font_outline_color = Color(0.0, 0.0, 0.0, 1.0)

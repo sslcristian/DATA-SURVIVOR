@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://dnivel200001"]
+
+[ext_resource type="PackedScene" uid="uid://dugador00001" path="res://scenes/jugador.tscn" id="1_jugador"]
+[ext_resource type="PackedScene" uid="uid://dhud000001" path="res://scenes/HUD.tscn" id="3_hud"]
+[ext_resource type="PackedScene" uid="uid://duipregunta1" path="res://scenes/UI_Pregunta.tscn" id="4_ui_pregunta"]
+[ext_resource type="Script" path="res://scripts/nivel2.gd" id="6_nivel_script"]
+[ext_resource type="Script" path="res://scripts/gamemanager.gd" id="7_gm_script"]
+[ext_resource type="Texture2D" uid="uid://b65hm7yebjutl" path="res://assets/escenario/Bright/sky.png" id="8_sky"]
+[ext_resource type="Texture2D" uid="uid://cfe58m1e0b1br" path="res://assets/escenario/Pale/clouds1.png" id="9_clouds1"]
+[ext_resource type="Texture2D" uid="uid://dnrbqx23vbyjt" path="res://assets/escenario/Pale/clouds2.png" id="10_clouds2"]
+[ext_resource type="Texture2D" uid="uid://d2jrmgy2co5gi" path="res://assets/escenario/Pale/postapocalypse1.png" id="11_bg"]
+[ext_resource type="Texture2D" uid="uid://cocbmtip6h0v" path="res://assets/escenario/Pale/ground&houses.png" id="12_ruinas"]
+[ext_resource type="Texture2D" uid="uid://b1j32l1nbam8j" path="res://assets/escenario/Pale/road.png" id="13_road"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
+size = Vector2(10000, 32)
+
+[node name="Nivel2" type="Node2D"]
+script = ExtResource("6_nivel_script")
+
+[node name="Fondo" type="ParallaxBackground" parent="."]
+
+[node name="CapaCielo" type="ParallaxLayer" parent="Fondo"]
+motion_scale = Vector2(0.05, 0.0)
+motion_mirroring = Vector2(480.0, 0.0)
+
+[node name="Cielo" type="Sprite2D" parent="Fondo/CapaCielo"]
+position = Vector2(0, 160)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_sky")
+
+[node name="CapaNubes1" type="ParallaxLayer" parent="Fondo"]
+motion_scale = Vector2(0.05, 0.0)
+motion_mirroring = Vector2(480.0, 0.0)
+
+[node name="Nubes1" type="Sprite2D" parent="Fondo/CapaNubes1"]
+position = Vector2(0, 120)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_clouds1")
+
+[node name="CapaNubes2" type="ParallaxLayer" parent="Fondo"]
+motion_scale = Vector2(0.09, 0.0)
+motion_mirroring = Vector2(480.0, 0.0)
+
+[node name="Nubes2" type="Sprite2D" parent="Fondo/CapaNubes2"]
+position = Vector2(0, 100)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("10_clouds2")
+
+[node name="CapaEdificios" type="ParallaxLayer" parent="Fondo"]
+motion_scale = Vector2(0.18, 0.0)
+motion_mirroring = Vector2(480.0, 0.0)
+
+[node name="Edificios" type="Sprite2D" parent="Fondo/CapaEdificios"]
+position = Vector2(0, 160)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_bg")
+
+[node name="CapaRuinas" type="ParallaxLayer" parent="Fondo"]
+motion_scale = Vector2(0.32, 0.0)
+motion_mirroring = Vector2(480.0, 0.0)
+
+[node name="Ruinas" type="Sprite2D" parent="Fondo/CapaRuinas"]
+position = Vector2(0, 155)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("12_ruinas")
+
+[node name="CapaTerreno" type="ParallaxLayer" parent="Fondo"]
+motion_scale = Vector2(0.65, 0.0)
+motion_mirroring = Vector2(480.0, 0.0)
+
+[node name="Terreno" type="Sprite2D" parent="Fondo/CapaTerreno"]
+position = Vector2(0, 145)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("13_road")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("7_gm_script")
+
+[node name="Suelo" type="StaticBody2D" parent="."]
+position = Vector2(4500, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Suelo"]
+shape = SubResource("RectangleShape2D_suelo")
+
+[node name="ColorRect" type="ColorRect" parent="Suelo"]
+offset_left = -5000.0
+offset_top = -16.0
+offset_right = 5000.0
+offset_bottom = 16.0
+color = Color(0.10, 0.07, 0.05, 1)
+
+[node name="Jugador" parent="." instance=ExtResource("1_jugador")]
+position = Vector2(-300, 160)
+
+[node name="HUD" parent="." instance=ExtResource("3_hud")]
+
+[node name="UI_Pregunta" parent="." instance=ExtResource("4_ui_pregunta")]

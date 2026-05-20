@@ -1,0 +1,149 @@
+[
+  {
+	"texto": "¿Qué estructura de datos sigue el principio LIFO?",
+	"opciones": ["Cola", "Pila", "Lista enlazada", "Árbol"],
+	"correcta": 1,
+	"dificultad": "facil",
+	"recompensa": {"tipo": "vida", "valor": 1}
+  },
+  {
+	"texto": "¿Qué estructura de datos sigue el principio FIFO?",
+	"opciones": ["Pila", "Árbol binario", "Cola", "Grafo"],
+	"correcta": 2,
+	"dificultad": "facil",
+	"recompensa": {"tipo": "vida", "valor": 1}
+  },
+  {
+	"texto": "En una pila, ¿cómo se llama la operación de agregar un elemento?",
+	"opciones": ["enqueue", "insert", "push", "add"],
+	"correcta": 2,
+	"dificultad": "facil",
+	"recompensa": {"tipo": "danio", "valor": 1}
+  },
+  {
+	"texto": "En una cola, ¿cómo se llama la operación de eliminar un elemento?",
+	"opciones": ["pop", "dequeue", "remove", "delete"],
+	"correcta": 1,
+	"dificultad": "facil",
+	"recompensa": {"tipo": "danio", "valor": 1}
+  },
+  {
+	"texto": "¿Cuál es la complejidad temporal de buscar un elemento en una lista enlazada?",
+	"opciones": ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+	"correcta": 2,
+	"dificultad": "media",
+	"recompensa": {"tipo": "defensa", "valor": 1}
+  },
+  {
+	"texto": "¿Qué nodo representa la raíz en un árbol binario?",
+	"opciones": ["El nodo con más hijos", "El nodo sin padre", "El nodo hoja", "El nodo más profundo"],
+	"correcta": 1,
+	"dificultad": "facil",
+	"recompensa": {"tipo": "vida", "valor": 1}
+  },
+  {
+	"texto": "¿Cuál es la complejidad de búsqueda en un árbol binario de búsqueda (BST) balanceado?",
+	"opciones": ["O(n)", "O(n²)", "O(log n)", "O(1)"],
+	"correcta": 2,
+	"dificultad": "media",
+	"recompensa": {"tipo": "danio", "valor": 2}
+  },
+  {
+	"texto": "En un grafo, ¿cómo se llama la conexión entre dos nodos?",
+	"opciones": ["Arista", "Vértice", "Nodo", "Camino"],
+	"correcta": 0,
+	"dificultad": "facil",
+	"recompensa": {"tipo": "vida", "valor": 1}
+  },
+  {
+	"texto": "¿Qué algoritmo de búsqueda requiere que el arreglo esté ordenado?",
+	"opciones": ["Búsqueda lineal", "Búsqueda binaria", "BFS", "DFS"],
+	"correcta": 1,
+	"dificultad": "media",
+	"recompensa": {"tipo": "danio", "valor": 2}
+  },
+  {
+	"texto": "¿Cuál es la complejidad del algoritmo de ordenamiento Bubble Sort en el peor caso?",
+	"opciones": ["O(n log n)", "O(n)", "O(n²)", "O(log n)"],
+	"correcta": 2,
+	"dificultad": "media",
+	"recompensa": {"tipo": "defensa", "valor": 1}
+  },
+  {
+	"texto": "¿Qué estructura utiliza el recorrido BFS (Búsqueda en Anchura)?",
+	"opciones": ["Pila", "Cola", "Árbol AVL", "Heap"],
+	"correcta": 1,
+	"dificultad": "media",
+	"recompensa": {"tipo": "danio", "valor": 2}
+  },
+  {
+	"texto": "¿Qué estructura utiliza el recorrido DFS (Búsqueda en Profundidad) de forma iterativa?",
+	"opciones": ["Cola", "Lista", "Pila", "Grafo"],
+	"correcta": 2,
+	"dificultad": "media",
+	"recompensa": {"tipo": "danio", "valor": 2}
+  },
+  {
+	"texto": "¿Cuál es la principal ventaja de una lista enlazada frente a un arreglo?",
+	"opciones": ["Acceso aleatorio O(1)", "Inserción y eliminación eficiente en cualquier posición", "Menor uso de memoria", "Búsqueda más rápida"],
+	"correcta": 1,
+	"dificultad": "media",
+	"recompensa": {"tipo": "defensa", "valor": 1}
+  },
+  {
+	"texto": "¿Qué tipo de árbol garantiza que la diferencia de alturas entre subárboles sea máximo 1?",
+	"opciones": ["Árbol binario simple", "Árbol AVL", "Árbol B", "Árbol de decisión"],
+	"correcta": 1,
+	"dificultad": "dificil",
+	"recompensa": {"tipo": "vida", "valor": 2}
+  },
+  {
+	"texto": "En Quick Sort, ¿cómo se llama el elemento que divide el arreglo?",
+	"opciones": ["Nodo", "Pivote", "Centinela", "Raíz"],
+	"correcta": 1,
+	"dificultad": "media",
+	"recompensa": {"tipo": "danio", "valor": 2}
+  },
+  {
+	"texto": "¿Cuál es la complejidad de Merge Sort en todos los casos?",
+	"opciones": ["O(n²)", "O(n)", "O(n log n)", "O(log n)"],
+	"correcta": 2,
+	"dificultad": "dificil",
+	"recompensa": {"tipo": "vida", "valor": 2}
+  },
+  {
+	"texto": "¿Qué propiedad tienen los nodos hoja en un árbol?",
+	"opciones": ["Tienen exactamente 2 hijos", "No tienen hijos", "Son la raíz", "Tienen más de 2 hijos"],
+	"correcta": 1,
+	"dificultad": "facil",
+	"recompensa": {"tipo": "vida", "valor": 1}
+  },
+  {
+	"texto": "¿Cuántos punteros tiene un nodo en una lista doblemente enlazada?",
+	"opciones": ["1", "2", "3", "0"],
+	"correcta": 1,
+	"dificultad": "facil",
+	"recompensa": {"tipo": "vida", "valor": 1}
+  },
+  {
+	"texto": "¿Qué algoritmo de ordenamiento tiene complejidad O(n log n) en el mejor caso?",
+	"opciones": ["Bubble Sort", "Insertion Sort", "Merge Sort", "Selection Sort"],
+	"correcta": 2,
+	"dificultad": "dificil",
+	"recompensa": {"tipo": "danio", "valor": 3}
+  },
+  {
+	"texto": "En un grafo dirigido, ¿cómo se llama un camino que regresa al nodo de inicio?",
+	"opciones": ["Camino simple", "Ciclo", "Arista", "Componente"],
+	"correcta": 1,
+	"dificultad": "media",
+	"recompensa": {"tipo": "defensa", "valor": 1}
+  },
+  {
+	"texto": "¿Cuál es la complejidad temporal de insertar un elemento en un árbol AVL en el peor caso?",
+	"opciones": ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+	"correcta": 1,
+	"dificultad": "legendario",
+	"recompensa": {"tipo": "legendario", "valor": 1}
+  }
+]

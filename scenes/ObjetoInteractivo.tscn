@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dobjinter1"]
+
+[ext_resource type="Script" path="res://scripts/objeto_interactivo.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/objetos/obstacles-and-objects.png" id="2_texture"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_col"]
+size = Vector2(24, 32)
+
+[sub_resource type="AtlasTexture" id="AT_cofre"]
+atlas = ExtResource("2_texture")
+region = Rect2(0, 0, 32, 32)
+
+[node name="ObjetoInteractivo" type="StaticBody2D" groups=["interactivo"]]
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AT_cofre")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_col")
+
+[node name="LabelE" type="Label" parent="."]
+position = Vector2(-10, -36)
+text = "[E]"
+visible = false
