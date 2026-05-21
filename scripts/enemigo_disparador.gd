@@ -6,6 +6,9 @@ const VELOCIDAD_PER := 100.0
 const RANGO_ATAQUE  := 200.0
 const DISTANCIA_MIN := 120.0
 const INTERVALO_ATK := 2.0
+const ALTURA_VUELO  := 55.0
+const BOB_AMPLITUD  := 8.0
+const BOB_VELOCIDAD := 2.5
 
 var vida  : int = 2
 var danio : int = 1
@@ -15,9 +18,11 @@ var _vida_max      : int
 var _barra_vida    : Node2D
 var _barra_relleno : ColorRect
 
-var _dir_patrulla := 1
-var _tiempo_atk   := INTERVALO_ATK
+var _dir_patrulla  := 1
+var _tiempo_atk    := INTERVALO_ATK
 var _jugador: Node2D = null
+var _pos_inicial: Vector2
+var _bob_tiempo: float = 0.0
 
 @onready var animacion : AnimatedSprite2D = $AnimatedSprite2D
 @onready var detector  : Area2D           = $Detector
@@ -28,6 +33,7 @@ signal enemigo_muerto
 
 func _ready() -> void:
 	_vida_max = vida
+	_pos_inicial = global_position
 	detector.body_entered.connect(_on_detector_body_entered)
 	detector.body_exited.connect(_on_detector_body_exited)
 	animacion.animation_finished.connect(_on_animation_finished)
@@ -35,10 +41,13 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if muerto:
-		return
-	if not is_on_floor():
 		velocity.y += GRAVEDAD * delta
+		move_and_slide()
+		return
+
+	_bob_tiempo += delta
 	_tiempo_atk += delta
+
 	if _jugador:
 		_perseguir_o_atacar()
 	else:
@@ -48,8 +57,12 @@ func _physics_process(delta: float) -> void:
 func _patrullar() -> void:
 	velocity.x = VELOCIDAD_PAT * _dir_patrulla
 	animacion.flip_h = _dir_patrulla < 0
-	if animacion.animation != &"walk":
-		animacion.play("walk")
+	if animacion.animation != &"idle":
+		animacion.play("idle")
+
+	var objetivo_y := _pos_inicial.y + sin(_bob_tiempo * BOB_VELOCIDAD) * BOB_AMPLITUD
+	velocity.y = (objetivo_y - global_position.y) * 8.0
+
 	var pos_x := global_position.x
 	if punto_a and punto_b:
 		if _dir_patrulla == 1 and pos_x >= punto_b.global_position.x:
@@ -60,6 +73,9 @@ func _patrullar() -> void:
 func _perseguir_o_atacar() -> void:
 	var dist := global_position.distance_to(_jugador.global_position)
 	animacion.flip_h = _jugador.global_position.x < global_position.x
+
+	var objetivo_y := _jugador.global_position.y - ALTURA_VUELO + sin(_bob_tiempo * BOB_VELOCIDAD) * BOB_AMPLITUD
+	velocity.y = clampf((objetivo_y - global_position.y) * 6.0, -VELOCIDAD_PER, VELOCIDAD_PER)
 
 	if dist < DISTANCIA_MIN:
 		var dir: float = signf(global_position.x - _jugador.global_position.x)
@@ -130,7 +146,7 @@ func _morir() -> void:
 
 func _crear_barra_vida() -> void:
 	_barra_vida = Node2D.new()
-	_barra_vida.position = Vector2(-10.0, -13.0)
+	_barra_vida.position = Vector2(-10.0, -22.0)
 	_barra_vida.z_index = 5
 	add_child(_barra_vida)
 
