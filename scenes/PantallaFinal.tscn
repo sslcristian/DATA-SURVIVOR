@@ -1,21 +1,22 @@
 [gd_scene format=3 uid="uid://dpfinal001"]
 
-[ext_resource type="Script" path="res://scripts/pantalla_final.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bxwhim6uq03ef" path="res://scripts/pantalla_final.gd" id="1_script"]
 
-[node name="PantallaFinal" type="Control"]
+[node name="PantallaFinal" type="Control" unique_id=1001251597]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1_script")
 
-[node name="Background" type="ColorRect" parent="."]
-anchors_preset = 15
+[node name="Background" type="ColorRect" parent="." unique_id=1838445389]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0.05, 0.05, 0.1, 1)
 
-[node name="VBox" type="VBoxContainer" parent="."]
-anchors_preset = 8
+[node name="VBox" type="VBoxContainer" parent="." unique_id=1274516357]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -26,22 +27,29 @@ offset_right = 180.0
 offset_bottom = 150.0
 theme_override_constants/separation = 20
 
-[node name="LabelTitulo" type="Label" parent="VBox"]
+[node name="LabelTitulo" type="Label" parent="VBox" unique_id=1782331215]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
 text = "RESULTADO"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 40
 
-[node name="LabelMensaje" type="Label" parent="VBox"]
+[node name="LabelMensaje" type="Label" parent="VBox" unique_id=2055864261]
+layout_mode = 2
 text = "..."
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Separador" type="HSeparator" parent="VBox"]
+[node name="Separador" type="HSeparator" parent="VBox" unique_id=1397946936]
+layout_mode = 2
 
-[node name="BtnReiniciar" type="Button" parent="VBox"]
+[node name="BtnReiniciar" type="Button" parent="VBox" unique_id=2097872882]
+custom_minimum_size = Vector2(360, 50)
+layout_mode = 2
 text = "VOLVER A INTENTAR"
-custom_minimum_size = Vector2(360, 50)
 
-[node name="BtnMenu" type="Button" parent="VBox"]
-text = "MENÚ PRINCIPAL"
+[node name="BtnMenu" type="Button" parent="VBox" unique_id=1295915020]
 custom_minimum_size = Vector2(360, 50)
+layout_mode = 2
+text = "MENÚ PRINCIPAL"
+
+[node name="Sprite2D" type="Sprite2D" parent="VBox" unique_id=1029453106]
