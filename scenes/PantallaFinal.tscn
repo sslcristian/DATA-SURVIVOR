@@ -1,19 +1,26 @@
 [gd_scene format=3 uid="uid://dpfinal001"]
 
 [ext_resource type="Script" uid="uid://bxwhim6uq03ef" path="res://scripts/pantalla_final.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://fi3fw7nwjfsu" path="res://assets/objetos/FINAL.png" id="2_dfpfr"]
+[ext_resource type="Texture2D" uid="uid://1j35lm33qrua" path="res://icon.svg" id="3_txykc"]
+[ext_resource type="Texture2D" uid="uid://k3ak63eqgc1o" path="res://assets/objetos/BOTONES FINAL REINTENTAR 1.png" id="4_7n3it"]
+[ext_resource type="Texture2D" uid="uid://ca7eos8yrs1do" path="res://assets/objetos/BOTONES FINAL REINTENTAR 2.png" id="6_gdlcd"]
+[ext_resource type="Texture2D" uid="uid://np2cmisya4lj" path="res://assets/objetos/BOTONES FINAL MENU 1.png" id="6_w18fv"]
+[ext_resource type="Texture2D" uid="uid://bsm8iwvivaps4" path="res://assets/objetos/BOTONES FINAL MENU 2.png" id="7_gdlcd"]
+[ext_resource type="AudioStream" uid="uid://cl1hstmswiq8a" path="res://assets/AUDIO Y LETRA/AUDIO/SONIDO DE VICTORIA.mp3" id="8_suad0"]
+[ext_resource type="AudioStream" uid="uid://c3c0hivj5qq2a" path="res://assets/AUDIO Y LETRA/AUDIO/Sonido de derrota.mp3" id="9_5fkrr"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_txykc"]
+load_path = "res://.godot/imported/FINAL.png-40e31ba834201a1f8cebcfaafd1f531a.ctex"
 
 [node name="PantallaFinal" type="Control" unique_id=1001251597]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_script")
-
-[node name="Background" type="ColorRect" parent="." unique_id=1838445389]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color(0.05, 0.05, 0.1, 1)
 
 [node name="VBox" type="VBoxContainer" parent="." unique_id=1274516357]
 layout_mode = 0
@@ -27,29 +34,50 @@ offset_right = 180.0
 offset_bottom = 150.0
 theme_override_constants/separation = 20
 
-[node name="LabelTitulo" type="Label" parent="VBox" unique_id=1782331215]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "RESULTADO"
-horizontal_alignment = 1
+[node name="VICTORIA" type="Sprite2D" parent="VBox" unique_id=1029453106]
+position = Vector2(179.02002, 150.00682)
+scale = Vector2(1.9600616, 0.9862826)
+texture = ExtResource("2_dfpfr")
+region_enabled = true
+region_rect = Rect2(26.833612, 22.036856, 651.6557, 729.33167)
 
-[node name="LabelMensaje" type="Label" parent="VBox" unique_id=2055864261]
-layout_mode = 2
-text = "..."
-horizontal_alignment = 1
-autowrap_mode = 3
+[node name="DERROTA" type="Sprite2D" parent="VBox" unique_id=1544572558]
+visible = false
+position = Vector2(179.5008, 149.99998)
+scale = Vector2(1.99844, 0.99173546)
+texture = SubResource("CompressedTexture2D_txykc")
+region_enabled = true
+region_rect = Rect2(709.3403, 25.720036, 641.87006, 726.8403)
 
-[node name="Separador" type="HSeparator" parent="VBox" unique_id=1397946936]
-layout_mode = 2
+[node name="Sprite2D" type="Sprite2D" parent="VBox" unique_id=158469178]
+position = Vector2(762.37506, 455.125)
+scale = Vector2(0.80273384, 0.705078)
+texture = ExtResource("3_txykc")
 
-[node name="BtnReiniciar" type="Button" parent="VBox" unique_id=2097872882]
+[node name="BtnReiniciar" type="TextureButton" parent="." unique_id=19204091]
 custom_minimum_size = Vector2(360, 50)
-layout_mode = 2
-text = "VOLVER A INTENTAR"
+layout_mode = 0
+offset_left = 47.0
+offset_top = 547.0
+offset_right = 434.0
+offset_bottom = 693.0
+texture_normal = ExtResource("4_7n3it")
+texture_pressed = ExtResource("6_gdlcd")
+texture_hover = ExtResource("6_gdlcd")
 
-[node name="BtnMenu" type="Button" parent="VBox" unique_id=1295915020]
+[node name="BtnMenu" type="TextureButton" parent="." unique_id=849080042]
 custom_minimum_size = Vector2(360, 50)
-layout_mode = 2
-text = "MENÚ PRINCIPAL"
+layout_mode = 0
+offset_left = 480.0
+offset_top = 553.0
+offset_right = 869.0
+offset_bottom = 689.0
+texture_normal = ExtResource("6_w18fv")
+texture_pressed = ExtResource("7_gdlcd")
+texture_hover = ExtResource("7_gdlcd")
 
-[node name="Sprite2D" type="Sprite2D" parent="VBox" unique_id=1029453106]
+[node name="SonidoVictoria" type="AudioStreamPlayer" parent="." unique_id=1579649513]
+stream = ExtResource("8_suad0")
+
+[node name="SonidoDerrota" type="AudioStreamPlayer" parent="." unique_id=736200939]
+stream = ExtResource("9_5fkrr")

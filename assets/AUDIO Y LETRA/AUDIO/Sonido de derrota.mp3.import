@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c3c0hivj5qq2a"
+path="res://.godot/imported/Sonido de derrota.mp3-39068aac3fd46bd013029e37ca4b1f83.mp3str"
+
+[deps]
+
+source_file="res://assets/AUDIO Y LETRA/AUDIO/Sonido de derrota.mp3"
+dest_files=["res://.godot/imported/Sonido de derrota.mp3-39068aac3fd46bd013029e37ca4b1f83.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
