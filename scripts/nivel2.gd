@@ -5,6 +5,9 @@ const ESCENA_ENEMIGO_DISP := preload("res://scenes/EnemigoDisparador.tscn")
 const ESCENA_OBJETO       := preload("res://scenes/ObjetoInteractivo.tscn")
 const ESCENA_BASE_META    := preload("res://scenes/BaseMeta.tscn")
 const _HOJA_OBJETOS       := preload("res://assets/objetos/obstacles-and-objects.png")
+const _TEXTURA_SUELO      := preload("res://assets/escenario/Bright/plataforma-removebg-preview.png")
+const _REGION_SUELO       := Rect2(-0.3079071, 28.066624, 311.5434, 84.91786)
+const RESPAWN_DELAY       := 6.0
 
 @onready var jugador     : CharacterBody2D = $Jugador
 @onready var hud         : CanvasLayer     = $HUD
@@ -189,23 +192,15 @@ func _plataforma(pos: Vector2, ancho: float) -> void:
 	col.shape = rect
 	body.add_child(col)
 
-	var tierra := ColorRect.new()
-	tierra.size = Vector2(ancho, 16)
-	tierra.position = Vector2(-ancho * 0.5, -6)
-	tierra.color = Color(0.38, 0.36, 0.32, 1)
-	body.add_child(tierra)
-
-	var hierba := ColorRect.new()
-	hierba.size = Vector2(ancho, 6)
-	hierba.position = Vector2(-ancho * 0.5, -10)
-	hierba.color = Color(0.48, 0.45, 0.40, 1)
-	body.add_child(hierba)
-
-	var borde := ColorRect.new()
-	borde.size = Vector2(ancho, 3)
-	borde.position = Vector2(-ancho * 0.5, 8)
-	borde.color = Color(0.22, 0.20, 0.18, 1)
-	body.add_child(borde)
+	var sprite := Sprite2D.new()
+	sprite.texture = _TEXTURA_SUELO
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	sprite.region_enabled = true
+	sprite.region_rect = _REGION_SUELO
+	sprite.scale = Vector2(ancho / 311.5434, 0.2951808)
+	sprite.position = Vector2(0.0, -2.0)
+	sprite.z_index = 1
+	body.add_child(sprite)
 
 
 func _obstaculo(pos: Vector2) -> void:
@@ -257,12 +252,28 @@ func _enemigo(pos: Vector2) -> void:
 	e.vida = 5
 	e.position = pos
 	add_child(e)
+	e.enemigo_muerto.connect(func(): _programar_respawn(pos, false, 5))
 
 func _enemigo_disp(pos: Vector2) -> void:
 	var e := ESCENA_ENEMIGO_DISP.instantiate()
 	e.vida = 3
 	e.position = pos
 	add_child(e)
+	e.enemigo_muerto.connect(func(): _programar_respawn(pos, true, 3))
+
+func _programar_respawn(pos: Vector2, es_disp: bool, vida_spawn: int) -> void:
+	await get_tree().create_timer(RESPAWN_DELAY).timeout
+	if not is_inside_tree() or not gm.jugando:
+		return
+	var e: CharacterBody2D
+	if es_disp:
+		e = ESCENA_ENEMIGO_DISP.instantiate()
+	else:
+		e = ESCENA_ENEMIGO.instantiate()
+	e.vida = vida_spawn
+	e.position = pos
+	add_child(e)
+	e.enemigo_muerto.connect(func(): _programar_respawn(pos, es_disp, vida_spawn))
 
 func _objeto(pos: Vector2, dificultad: String = "") -> void:
 	var obj := ESCENA_OBJETO.instantiate()
