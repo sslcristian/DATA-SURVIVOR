@@ -7,23 +7,21 @@ const ATK_VACIO     : Texture2D = preload("res://assets/ui/atk_vacio.png")
 const DEF_CARGADO   : Texture2D = preload("res://assets/ui/def_cargado.png")
 const DEF_VACIO     : Texture2D = preload("res://assets/ui/def_vacio.png")
 
-@onready var contenedor_vida  : HBoxContainer  = $PanelHUD/VBox/FilaVida
-@onready var contenedor_danio : HBoxContainer  = $PanelHUD/VBox/FilaStats/PipsDanio
-@onready var contenedor_def   : HBoxContainer  = $PanelHUD/VBox/FilaStats/PipsDefensa
-@onready var label_arma       : Label           = $PanelHUD/VBox/LabelArma
-@onready var top_center       : CenterContainer = $TopCenter
-@onready var label_mensaje    : Label           = $TopCenter/PanelMensaje/LabelMensaje
+const MAX_ATK := 5
+const MAX_DEF := 5
+
+@onready var contenedor_vida : HBoxContainer = $Control/HBoxContainer
+@onready var contenedor_atk  : HBoxContainer = $Control/ContenedorAtk
+@onready var contenedor_def  : HBoxContainer = $Control/ContenedorDef
+@onready var label_arma      : Label          = $Control/LabelArma
+@onready var label_nivel     : Label          = $Control/LabelNivel
+@onready var label_mensaje   : Label          = $Control/LabelMensaje
 
 func _ready() -> void:
 	for txt in contenedor_vida.get_children():
 		(txt as TextureRect).texture = CORAZON_LLENO
-
-	for pip in contenedor_danio.get_children():
-		(pip as TextureRect).texture = ATK_VACIO
-	for pip in contenedor_def.get_children():
-		(pip as TextureRect).texture = DEF_VACIO
-
-	actualizar_stats(1, 0)
+	_actualizar_barra(contenedor_atk, MAX_ATK, MAX_ATK, ATK_CARGADO, ATK_VACIO)
+	_actualizar_barra(contenedor_def, MAX_DEF, MAX_DEF, DEF_CARGADO, DEF_VACIO)
 
 func actualizar_vida(corazones: int) -> void:
 	var hijos := contenedor_vida.get_children()
@@ -38,20 +36,34 @@ func actualizar_vida(corazones: int) -> void:
 	for i in hijos.size():
 		(hijos[i] as TextureRect).texture = CORAZON_LLENO if i < corazones else CORAZON_VACIO
 
-func actualizar_stats(danio: int, defensa: int) -> void:
-	var pips_atk := contenedor_danio.get_children()
-	for i in pips_atk.size():
-		(pips_atk[i] as TextureRect).texture = ATK_CARGADO if i < danio else ATK_VACIO
+func set_stats(atk: int, def: int) -> void:
+	_actualizar_barra(contenedor_atk, atk, MAX_ATK, ATK_CARGADO, ATK_VACIO)
+	_actualizar_barra(contenedor_def, def, MAX_DEF, DEF_CARGADO, DEF_VACIO)
 
-	var pips_def := contenedor_def.get_children()
-	for i in pips_def.size():
-		(pips_def[i] as TextureRect).texture = DEF_CARGADO if i < defensa else DEF_VACIO
+func actualizar_stats(danio: int, defensa: int) -> void:
+	set_stats(danio, defensa)
 
 func set_arma(nombre: String) -> void:
-	label_arma.text = "ARMA: " + nombre
+	label_arma.text = "Arma: " + nombre
+
+func set_nivel(nivel: int) -> void:
+	label_nivel.text = "NIVEL: " + str(nivel)
 
 func mostrar_mensaje(texto: String, duracion: float = 2.0) -> void:
 	label_mensaje.text = texto
-	top_center.visible = true
 	await get_tree().create_timer(duracion).timeout
-	top_center.visible = false
+	label_mensaje.text = ""
+
+func _actualizar_barra(contenedor: HBoxContainer, valor: int, maximo: int,
+		tex_llena: Texture2D, tex_vacia: Texture2D) -> void:
+	var hijos := contenedor.get_children()
+	while hijos.size() < maximo:
+		var icono := TextureRect.new()
+		icono.custom_minimum_size = Vector2(14, 14)
+		icono.size_flags_horizontal = 0
+		icono.expand_mode = TextureRect.EXPAND_KEEP_SIZE
+		icono.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		contenedor.add_child(icono)
+		hijos = contenedor.get_children()
+	for i in hijos.size():
+		(hijos[i] as TextureRect).texture = tex_llena if i < valor else tex_vacia

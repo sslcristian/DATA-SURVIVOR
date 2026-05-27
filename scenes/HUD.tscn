@@ -1,210 +1,84 @@
 [gd_scene format=3 uid="uid://dhud000001"]
 
 [ext_resource type="Script" uid="uid://2c717hngoqv0" path="res://scripts/hud.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/objetos/monitor_personaje.png" id="2_monitor"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_HUD"]
-content_margin_left = 8.0
-content_margin_top = 6.0
-content_margin_right = 8.0
-content_margin_bottom = 6.0
-bg_color = Color(0.04, 0.06, 0.04, 0.92)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.8, 0.42, 0.04, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_SEP"]
-content_margin_top = 1.0
-content_margin_bottom = 1.0
-bg_color = Color(0.8, 0.42, 0.04, 0.55)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_MSG"]
-content_margin_left = 14.0
-content_margin_top = 7.0
-content_margin_right = 14.0
-content_margin_bottom = 7.0
-bg_color = Color(0.03, 0.04, 0.02, 0.94)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.95, 0.82, 0.08, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[node name="HUD" type="CanvasLayer" unique_id=1663836179]
+[node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_script")
 
-[node name="PanelHUD" type="PanelContainer" parent="." unique_id=616688096]
-custom_minimum_size = Vector2(300, 0)
-offset_left = 4.0
-offset_top = 4.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_HUD")
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0
+offset_top = 0
+offset_right = 320
+offset_bottom = 220
 
-[node name="VBox" type="VBoxContainer" parent="PanelHUD" unique_id=1040754211]
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="FilaVida" type="HBoxContainer" parent="PanelHUD/VBox" unique_id=1544283469]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="Corazon1" type="TextureRect" parent="PanelHUD/VBox/FilaVida" unique_id=374522093]
-custom_minimum_size = Vector2(22, 22)
-layout_mode = 2
-size_flags_horizontal = 0
+[node name="MonitorBG" type="TextureRect" parent="Control"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 320.0
+offset_bottom = 220.0
+texture = ExtResource("2_monitor")
 stretch_mode = 5
 
-[node name="Corazon2" type="TextureRect" parent="PanelHUD/VBox/FilaVida" unique_id=721779530]
-custom_minimum_size = Vector2(22, 22)
-layout_mode = 2
-size_flags_horizontal = 0
-stretch_mode = 5
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+offset_left = 55.0
+offset_top = 55.0
+offset_right = 255.0
+offset_bottom = 85.0
 
-[node name="Corazon3" type="TextureRect" parent="PanelHUD/VBox/FilaVida" unique_id=2045369898]
-custom_minimum_size = Vector2(22, 22)
-layout_mode = 2
-size_flags_horizontal = 0
-stretch_mode = 5
-
-[node name="Corazon4" type="TextureRect" parent="PanelHUD/VBox/FilaVida" unique_id=209843314]
-custom_minimum_size = Vector2(22, 22)
-layout_mode = 2
-size_flags_horizontal = 0
-stretch_mode = 5
-
-[node name="Corazon5" type="TextureRect" parent="PanelHUD/VBox/FilaVida" unique_id=1804189247]
-custom_minimum_size = Vector2(22, 22)
-layout_mode = 2
-size_flags_horizontal = 0
-stretch_mode = 5
-
-[node name="Sep1" type="HSeparator" parent="PanelHUD/VBox" unique_id=1425687978]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_SEP")
-
-[node name="FilaStats" type="HBoxContainer" parent="PanelHUD/VBox" unique_id=1549021912]
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="LabelAtk" type="Label" parent="PanelHUD/VBox/FilaStats" unique_id=743643272]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_colors/font_color = Color(1, 0.5, 0.05, 1)
+[node name="LabelArma" type="Label" parent="Control"]
+offset_left = 55.0
+offset_top = 92.0
+offset_right = 255.0
+offset_bottom = 108.0
 theme_override_font_sizes/font_size = 11
+text = "Arma: Rifle"
+
+[node name="LabelAtkTitulo" type="Label" parent="Control"]
+offset_left = 55.0
+offset_top = 113.0
+offset_right = 82.0
+offset_bottom = 129.0
+theme_override_font_sizes/font_size = 9
 text = "ATK"
-vertical_alignment = 1
 
-[node name="PipsDanio" type="HBoxContainer" parent="PanelHUD/VBox/FilaStats" unique_id=1412382491]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/separation = 2
-alignment = 1
+[node name="ContenedorAtk" type="HBoxContainer" parent="Control"]
+offset_left = 82.0
+offset_top = 111.0
+offset_right = 220.0
+offset_bottom = 129.0
 
-[node name="Pip1" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDanio" unique_id=1968952280]
-custom_minimum_size = Vector2(22, 14)
-layout_mode = 2
-size_flags_horizontal = 0
-stretch_mode = 2
-
-[node name="Pip2" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDanio" unique_id=2141883784]
-custom_minimum_size = Vector2(22, 14)
-layout_mode = 2
-size_flags_horizontal = 0
-stretch_mode = 2
-
-[node name="Pip3" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDanio" unique_id=109180896]
-custom_minimum_size = Vector2(22, 14)
-layout_mode = 2
-size_flags_horizontal = 0
-stretch_mode = 2
-
-[node name="Pip4" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDanio" unique_id=1722160641]
-custom_minimum_size = Vector2(22, 14)
-layout_mode = 2
-size_flags_horizontal = 0
-stretch_mode = 2
-
-[node name="Pip5" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDanio" unique_id=906231542]
-custom_minimum_size = Vector2(22, 14)
-layout_mode = 2
-size_flags_horizontal = 0
-stretch_mode = 2
-
-[node name="Espacio" type="Control" parent="PanelHUD/VBox/FilaStats" unique_id=1739002667]
-custom_minimum_size = Vector2(4, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="LabelDef" type="Label" parent="PanelHUD/VBox/FilaStats" unique_id=1524368847]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_colors/font_color = Color(0.3, 0.7, 1, 1)
-theme_override_font_sizes/font_size = 11
+[node name="LabelDefTitulo" type="Label" parent="Control"]
+offset_left = 55.0
+offset_top = 133.0
+offset_right = 82.0
+offset_bottom = 149.0
+theme_override_font_sizes/font_size = 9
 text = "DEF"
-vertical_alignment = 1
 
-[node name="PipsDefensa" type="HBoxContainer" parent="PanelHUD/VBox/FilaStats" unique_id=927500379]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/separation = 2
-alignment = 1
+[node name="ContenedorDef" type="HBoxContainer" parent="Control"]
+offset_left = 82.0
+offset_top = 131.0
+offset_right = 220.0
+offset_bottom = 149.0
 
-[node name="PipDef1" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDefensa" unique_id=1225516347]
-custom_minimum_size = Vector2(22, 14)
-layout_mode = 2
-size_flags_horizontal = 0
-stretch_mode = 2
+[node name="LabelNivel" type="Label" parent="Control"]
+offset_left = 55.0
+offset_top = 153.0
+offset_right = 255.0
+offset_bottom = 169.0
+theme_override_font_sizes/font_size = 10
+text = "NIVEL: 1"
 
-[node name="PipDef2" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDefensa" unique_id=100705828]
-custom_minimum_size = Vector2(22, 14)
-layout_mode = 2
-size_flags_horizontal = 0
-stretch_mode = 2
-
-[node name="PipDef3" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDefensa" unique_id=1604339297]
-custom_minimum_size = Vector2(22, 14)
-layout_mode = 2
-size_flags_horizontal = 0
-stretch_mode = 2
-
-[node name="PipDef4" type="TextureRect" parent="PanelHUD/VBox/FilaStats/PipsDefensa" unique_id=1256497889]
-custom_minimum_size = Vector2(22, 14)
-layout_mode = 2
-size_flags_horizontal = 0
-stretch_mode = 2
-
-[node name="Sep2" type="HSeparator" parent="PanelHUD/VBox" unique_id=372081622]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_SEP")
-
-[node name="LabelArma" type="Label" parent="PanelHUD/VBox" unique_id=498600794]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.68, 0.88, 0.52, 1)
-theme_override_font_sizes/font_size = 11
-text = "ARMA: Rifle"
-
-[node name="TopCenter" type="CenterContainer" parent="." unique_id=627569367]
-visible = false
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 50.0
-
-[node name="PanelMensaje" type="PanelContainer" parent="TopCenter" unique_id=796744520]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_MSG")
-
-[node name="LabelMensaje" type="Label" parent="TopCenter/PanelMensaje" unique_id=2066047961]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.9, 0.1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 15
-horizontal_alignment = 1
+[node name="LabelMensaje" type="Label" parent="Control"]
+offset_left = 55.0
+offset_top = 175.0
+offset_right = 255.0
+offset_bottom = 195.0
+modulate = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = ""

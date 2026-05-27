@@ -2,52 +2,55 @@ extends CanvasLayer
 
 signal opcion_seleccionada(indice: int)
 
-@onready var panel        : Panel        = $Panel
-@onready var label_texto  : Label        = $Panel/VBox/LabelPregunta
-@onready var contenedor   : VBoxContainer = $Panel/VBox/Opciones
-@onready var label_result : Label        = $Panel/VBox/LabelResultado
+@onready var overlay         : Panel  = $Control
+@onready var label_pregunta  : Label  = $Control/Panel/LabelPregunta
+@onready var label_resultado : Label  = $Control/Panel/LabelResultado
+@onready var _btn0           : Button = $Control/Panel/BtnOpcion0
+@onready var _btn1           : Button = $Control/Panel/BtnOpcion1
+@onready var _btn2           : Button = $Control/Panel/BtnOpcion2
+@onready var _btn3           : Button = $Control/Panel/BtnOpcion3
 
-var _botones: Array[Button] = []
+var botones: Array[Button]
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	panel.visible = false
-	label_result.visible = false
+	botones = [_btn0, _btn1, _btn2, _btn3]
+	overlay.visible = false
+	label_resultado.visible = false
+	for i in botones.size():
+		botones[i].pressed.connect(_on_opcion_seleccionada.bind(i))
 
 func mostrar(pregunta: Dictionary) -> void:
-	label_texto.text = pregunta.texto
-	label_result.visible = false
-
-	for b in _botones:
-		b.queue_free()
-	_botones.clear()
-
-	for i in pregunta.opciones.size():
-		var btn := Button.new()
-		btn.text = pregunta.opciones[i]
-		btn.pressed.connect(_on_opcion_presionada.bind(i))
-		contenedor.add_child(btn)
-		_botones.append(btn)
-
-	panel.visible = true
+	label_pregunta.text = pregunta.texto
+	label_pregunta.visible = true
+	label_resultado.visible = false
+	for i in botones.size():
+		if i < pregunta.opciones.size():
+			botones[i].text = pregunta.opciones[i]
+			botones[i].disabled = false
+			botones[i].visible = true
+		else:
+			botones[i].visible = false
+	overlay.visible = true
 	get_tree().paused = true
 
 func mostrar_resultado(correcto: bool, recompensa_desc: String = "") -> void:
-	label_result.visible = true
+	label_pregunta.visible = false
+	label_resultado.visible = true
 	if correcto:
-		label_result.text = "¡Correcto! " + recompensa_desc
-		label_result.add_theme_color_override("font_color", Color.GREEN)
+		label_resultado.text = "¡Correcto! " + recompensa_desc
+		label_resultado.add_theme_color_override("font_color", Color(0.2, 1.0, 0.4, 1.0))
 	else:
-		label_result.text = "Incorrecto. -1 corazon"
-		label_result.add_theme_color_override("font_color", Color.RED)
-	for b in _botones:
+		label_resultado.text = "Incorrecto. -1 corazon"
+		label_resultado.add_theme_color_override("font_color", Color(1.0, 0.25, 0.25, 1.0))
+	for b in botones:
 		b.disabled = true
 	await get_tree().create_timer(2.0).timeout
 	cerrar()
 
 func cerrar() -> void:
-	panel.visible = false
+	overlay.visible = false
 	get_tree().paused = false
 
-func _on_opcion_presionada(indice: int) -> void:
+func _on_opcion_seleccionada(indice: int) -> void:
 	emit_signal("opcion_seleccionada", indice)
