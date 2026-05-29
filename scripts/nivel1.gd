@@ -19,6 +19,7 @@ var _pregunta_pendiente: bool = false
 
 func _ready() -> void:
 	get_tree().debug_collisions_hint = false
+	MusicManager.play_gameplay()
 	_generar_nivel()
 
 	var enemigos: Array[Node] = get_tree().get_nodes_in_group("enemigo")
@@ -416,6 +417,7 @@ func _on_juego_terminado(victoria: bool) -> void:
 		await get_tree().create_timer(2.0).timeout
 		get_tree().change_scene_to_file("res://scenes/Nivel2.tscn")
 	else:
+		MusicManager.stop()
 		var capa := CanvasLayer.new()
 		capa.layer = 100
 		get_tree().root.add_child(capa)

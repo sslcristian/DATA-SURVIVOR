@@ -18,6 +18,7 @@ func aplicar(jugador: Node) -> void:
 			jugador.danio += valor
 		Tipo.DEFENSA:
 			jugador.defensa += valor
+			jugador.actualizar_escudo()
 		Tipo.LEGENDARIO:
 			jugador.danio = 99
 			jugador.sistema_vida.MAX_CORAZONES += 1

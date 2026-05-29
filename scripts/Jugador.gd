@@ -4,13 +4,20 @@ const VELOCIDAD    := 200.0
 const FUERZA_SALTO := -420.0
 const GRAVEDAD     := 980.0
 
-var danio   : int = 1
-var defensa : int = 0
-var atacando: bool = false
-var muerto  : bool = false
-var invulnerable: bool = false
+var danio          : int  = 1
+var defensa        : int  = 0
+var atacando       : bool = false
+var muerto         : bool = false
+var invulnerable   : bool = false
+var escudo_activo  : bool = false
+var escudo_inmune  : bool = false
 
 var sistema_vida: SistemaVida
+var _escudo: Polygon2D
+var _tween_escudo: Tween
+var _timer_escudo_inmune  : Timer
+var _timer_escudo_duracion: Timer
+
 @onready var sonido_disparo: AudioStreamPlayer2D = $Disparo
 @onready var animacion   : AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox      : Area2D           = $HitboxAtaque
@@ -33,6 +40,81 @@ func _ready() -> void:
 	area_inter.body_exited.connect(_on_area_interaccion_body_exited)
 	timer_atk.timeout.connect(_on_timer_ataque_timeout)
 	timer_inv.timeout.connect(_on_timer_invulnerabilidad_timeout)
+	_crear_escudo()
+	_crear_timers_escudo()
+
+func _crear_escudo() -> void:
+	_escudo = Polygon2D.new()
+	_escudo.z_index = -1
+	_escudo.color = Color(0.3, 0.75, 1.0, 0.0)
+	add_child(_escudo)
+
+func _crear_timers_escudo() -> void:
+	_timer_escudo_inmune = Timer.new()
+	_timer_escudo_inmune.one_shot = true
+	_timer_escudo_inmune.timeout.connect(_fin_inmunidad_escudo)
+	add_child(_timer_escudo_inmune)
+
+	_timer_escudo_duracion = Timer.new()
+	_timer_escudo_duracion.one_shot = true
+	_timer_escudo_duracion.timeout.connect(_fin_escudo)
+	add_child(_timer_escudo_duracion)
+
+# Llamado desde recompensa.gd al ganar defensa
+func actualizar_escudo() -> void:
+	escudo_activo = true
+	escudo_inmune = true
+
+	# 6s base de inmunidad + 1.5s por cada carga extra
+	_timer_escudo_inmune.wait_time = 6.0 + (defensa - 1) * 1.5
+	_timer_escudo_inmune.start()
+
+	# 15s base de duración + 3s por cada carga extra
+	_timer_escudo_duracion.wait_time = 15.0 + (defensa - 1) * 3.0
+	_timer_escudo_duracion.start()
+
+	_actualizar_visual_escudo()
+
+func _actualizar_visual_escudo() -> void:
+	if _tween_escudo:
+		_tween_escudo.kill()
+
+	# radio = half_width sprite (8) + 3px fijos + 1px por carga
+	var radio := 11.0 + defensa * 1.0
+	var pts := PackedVector2Array()
+	for i in range(32):
+		var a := 2.0 * PI * i / 32.0
+		pts.append(Vector2(cos(a), sin(a)) * radio)
+	_escudo.polygon = pts
+	_escudo.scale = Vector2.ONE
+
+	if escudo_inmune:
+		# Inmune: azul brillante casi opaco
+		_escudo.color = Color(0.55, 0.92, 1.0, 0.70)
+	else:
+		# Activo reduciendo daño: azul semitransparente
+		_escudo.color = Color(0.3, 0.75, 1.0, 0.40 + defensa * 0.03)
+
+	_tween_escudo = create_tween().set_loops()
+	_tween_escudo.tween_property(_escudo, "scale", Vector2(1.05, 1.05), 0.9).set_ease(Tween.EASE_IN_OUT)
+	_tween_escudo.tween_property(_escudo, "scale", Vector2(1.0, 1.0), 0.9).set_ease(Tween.EASE_IN_OUT)
+
+func _fin_inmunidad_escudo() -> void:
+	escudo_inmune = false
+	# Cambia visualmente al estado de reducción de daño
+	if _tween_escudo:
+		_tween_escudo.kill()
+	var t := create_tween()
+	t.tween_property(_escudo, "color", Color(0.3, 0.75, 1.0, 0.40 + defensa * 0.03), 0.4)
+	t.tween_callback(_actualizar_visual_escudo)
+
+func _fin_escudo() -> void:
+	escudo_activo = false
+	escudo_inmune = false
+	if _tween_escudo:
+		_tween_escudo.kill()
+	var t := create_tween()
+	t.tween_property(_escudo, "color:a", 0.0, 0.5)
 
 func _physics_process(delta: float) -> void:
 	if muerto:
@@ -139,7 +221,15 @@ func _spawn_bala(dir_x: float, hit: Dictionary) -> void:
 func recibir_danio(cantidad: int = 1) -> void:
 	if invulnerable or muerto:
 		return
-	var danio_real: int = max(1, cantidad - defensa)
+	if escudo_inmune:
+		return
+	var danio_real: int
+	if escudo_activo:
+		# 12% de reducción por carga, máximo 70%
+		var reduccion := clampf(defensa * 0.12, 0.0, 0.70)
+		danio_real = max(1, int(round(cantidad * (1.0 - reduccion))))
+	else:
+		danio_real = cantidad
 	sistema_vida.reducir_vida(danio_real)
 	if sistema_vida.esta_vivo():
 		invulnerable = true

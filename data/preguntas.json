@@ -5,7 +5,7 @@
 	"correcta": 1,
 	"dificultad": "facil",
 	"pista": "Piensa en una pila de platos: solo puedes tomar el último que pusiste.",
-	"recompensa": {"tipo": "vida", "valor": 1}
+	"recompensa": {"tipo": "defensa", "valor": 1}
   },
   {
 	"texto": "¿Qué estructura de datos sigue el principio FIFO?",
@@ -13,7 +13,7 @@
 	"correcta": 2,
 	"dificultad": "facil",
 	"pista": "Imagina una fila de personas: el primero en llegar es el primero en salir.",
-	"recompensa": {"tipo": "vida", "valor": 1}
+	"recompensa": {"tipo": "danio", "valor": 1}
   },
   {
 	"texto": "En una pila, ¿cómo se llama la operación de agregar un elemento?",
@@ -45,7 +45,7 @@
 	"correcta": 1,
 	"dificultad": "facil",
 	"pista": "Es el punto de partida del árbol. Por encima de él no hay ningún otro nodo.",
-	"recompensa": {"tipo": "vida", "valor": 1}
+	"recompensa": {"tipo": "defensa", "valor": 1}
   },
   {
 	"texto": "¿Cuál es la complejidad de búsqueda en un árbol binario de búsqueda (BST) balanceado?",
@@ -109,7 +109,7 @@
 	"correcta": 1,
 	"dificultad": "dificil",
 	"pista": "Su nombre son las iniciales de sus inventores: Adelson-Velsky y Landis.",
-	"recompensa": {"tipo": "vida", "valor": 2}
+	"recompensa": {"tipo": "defensa", "valor": 2}
   },
   {
 	"texto": "En Quick Sort, ¿cómo se llama el elemento que divide el arreglo?",
@@ -125,7 +125,7 @@
 	"correcta": 2,
 	"dificultad": "dificil",
 	"pista": "Siempre divide a la mitad (log n niveles) y en cada nivel procesa todos los elementos (n).",
-	"recompensa": {"tipo": "vida", "valor": 2}
+	"recompensa": {"tipo": "danio", "valor": 2}
   },
   {
 	"texto": "¿Qué propiedad tienen los nodos hoja en un árbol?",
@@ -133,7 +133,7 @@
 	"correcta": 1,
 	"dificultad": "facil",
 	"pista": "Como las hojas de un árbol real: están al final de las ramas, sin continuar.",
-	"recompensa": {"tipo": "vida", "valor": 1}
+	"recompensa": {"tipo": "defensa", "valor": 1}
   },
   {
 	"texto": "¿Cuántos punteros tiene un nodo en una lista doblemente enlazada?",
@@ -141,7 +141,7 @@
 	"correcta": 1,
 	"dificultad": "facil",
 	"pista": "Se llama 'doblemente' porque cada nodo apunta en dos direcciones: siguiente y anterior.",
-	"recompensa": {"tipo": "vida", "valor": 1}
+	"recompensa": {"tipo": "danio", "valor": 1}
   },
   {
 	"texto": "¿Qué algoritmo de ordenamiento tiene complejidad O(n log n) en el mejor caso?",

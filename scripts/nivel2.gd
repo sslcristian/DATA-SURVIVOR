@@ -19,6 +19,7 @@ var _pregunta_pendiente: bool = false
 
 func _ready() -> void:
 	get_tree().debug_collisions_hint = false
+	MusicManager.play_gameplay()
 	_generar_nivel()
 
 	var enemigos: Array[Node] = get_tree().get_nodes_in_group("enemigo")
@@ -379,6 +380,7 @@ func _on_jugador_vida_cambiada(corazones: int) -> void:
 	hud.actualizar_vida(corazones)
 
 func _on_juego_terminado(victoria: bool) -> void:
+	MusicManager.stop()
 	var capa := CanvasLayer.new()
 	capa.layer = 100
 	get_tree().root.add_child(capa)
