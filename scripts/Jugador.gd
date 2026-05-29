@@ -11,7 +11,7 @@ var muerto  : bool = false
 var invulnerable: bool = false
 
 var sistema_vida: SistemaVida
-
+@onready var sonido_disparo: AudioStreamPlayer2D = $Disparo
 @onready var animacion   : AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox      : Area2D           = $HitboxAtaque
 @onready var area_inter  : Area2D           = $AreaInteraccion
@@ -87,17 +87,37 @@ func _manejar_ataque() -> void:
 		timer_atk.start()
 
 func _disparar() -> void:
+	var sonido := AudioStreamPlayer2D.new()
+	sonido.stream = sonido_disparo.stream
+	sonido.volume_db = sonido_disparo.volume_db
+	sonido.pitch_scale = sonido_disparo.pitch_scale
+
+	get_parent().add_child(sonido)
+
+	sonido.global_position = global_position
+	sonido.play(7.0)
+
 	var espacio := get_world_2d().direct_space_state
 	var dir_x := -1.0 if animacion.flip_h else 1.0
+
 	var query := PhysicsRayQueryParameters2D.create(
 		global_position,
 		global_position + Vector2(dir_x * 500.0, 0.0)
 	)
+
 	query.exclude = [self]
+
 	var hit := espacio.intersect_ray(query)
+
 	if hit and hit.collider.is_in_group("enemigo"):
 		hit.collider.recibir_danio(danio)
+
 	_spawn_bala(dir_x, hit)
+
+	await get_tree().create_timer(1.0).timeout
+
+	sonido.stop()
+	sonido.queue_free()
 
 func _spawn_bala(dir_x: float, hit: Dictionary) -> void:
 	var bala := Sprite2D.new()
