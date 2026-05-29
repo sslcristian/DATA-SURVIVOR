@@ -35,6 +35,7 @@ offset_bottom = 150.0
 theme_override_constants/separation = 20
 
 [node name="VICTORIA" type="Sprite2D" parent="VBox" unique_id=1029453106]
+visible = false
 position = Vector2(179.02002, 150.00682)
 scale = Vector2(1.9600616, 0.9862826)
 texture = ExtResource("2_dfpfr")
