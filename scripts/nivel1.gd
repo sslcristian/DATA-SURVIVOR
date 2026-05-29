@@ -7,6 +7,7 @@ const ESCENA_BASE_META    := preload("res://scenes/BaseMeta.tscn")
 const _HOJA_OBJETOS       := preload("res://assets/objetos/obstacles-and-objects.png")
 const _TEXTURA_SUELO      := preload("res://assets/escenario/Bright/plataforma-removebg-preview.png")
 const _REGION_SUELO       := Rect2(-0.3079071, 28.066624, 311.5434, 84.91786)
+const _TEXTURA_CARROS     := preload("res://assets/objetos/carro_daño.png")
 const RESPAWN_DELAY       := 6.0
 
 @onready var jugador     : CharacterBody2D = $Jugador
@@ -68,6 +69,11 @@ func _generar_nivel() -> void:
 	_obstaculo(Vector2(700,  184))
 	_obstaculo(Vector2(980,  184))
 
+	var z1 := [Vector2(150,140), Vector2(400,100), Vector2(650,130), Vector2(900,80), Vector2(1150,120), Vector2(1350,70)]
+	z1.shuffle()
+	_carro_plat(z1[0])
+	_carro_plat(z1[1])
+
 	_objeto(Vector2(430, 74), "facil")
 	_lampara(Vector2(100,  184))
 	_lampara(Vector2(480,  184))
@@ -104,6 +110,11 @@ func _generar_nivel() -> void:
 	_obstaculo(Vector2(2480, 184))
 	_obstaculo(Vector2(2650, 184))
 	_obstaculo(Vector2(2800, 184))
+
+	var z2 := [Vector2(1600,110), Vector2(1850,70), Vector2(2100,120), Vector2(2350,80), Vector2(2600,110), Vector2(2850,60)]
+	z2.shuffle()
+	_carro_plat(z2[0])
+	_carro_plat(z2[1])
 
 	_objeto(Vector2(2100, 94), "media")
 	_lampara(Vector2(1620, 184))
@@ -145,6 +156,11 @@ func _generar_nivel() -> void:
 	_obstaculo(Vector2(4350, 184))
 	_obstaculo(Vector2(4450, 184))
 
+	var z3 := [Vector2(3100,90), Vector2(3350,60), Vector2(3600,110), Vector2(3850,75), Vector2(4100,120), Vector2(4350,65)]
+	z3.shuffle()
+	_carro_plat(z3[0])
+	_carro_plat(z3[1])
+
 	_objeto(Vector2(3600, 84), "media")
 	_lampara(Vector2(3150, 184))
 	_lampara(Vector2(3500, 184))
@@ -171,6 +187,10 @@ func _generar_nivel() -> void:
 	_obstaculo(Vector2(4950, 184))
 	_obstaculo(Vector2(5000, 184))
 	_obstaculo(Vector2(5180, 184))
+
+	var z4 := [Vector2(4650,100), Vector2(4900,70), Vector2(5100,110)]
+	z4.shuffle()
+	_carro_plat(z4[0])
 
 	_objeto(Vector2(4750, 168), "dificil")
 	_lampara(Vector2(4620, 184))
@@ -288,6 +308,47 @@ func _spawn_plat(pos: Vector2, ancho: float, v: int) -> void:
 		if is_inside_tree() and gm.jugando:
 			_spawn_plat(pos, ancho, v)
 	)
+
+func _carro_plat(plat_pos: Vector2) -> void:
+	# Regiones exactas: 4 columnas × fila 0 (y=6-29, h=24)
+	# cada celda es un carro individual detectado por análisis de píxeles
+	var regiones := [
+		Rect2(  6, 6, 26, 24),  # tipo 1
+		Rect2( 38, 6, 26, 24),  # tipo 2
+		Rect2( 73, 6, 21, 24),  # tipo 3
+		Rect2(105, 6, 20, 24),  # tipo 4
+	]
+	const ESCALA := 1.0
+	var region: Rect2 = regiones[randi() % 4]
+	var sw := region.size.x * ESCALA
+	var sh := region.size.y * ESCALA  # 48 px
+
+	# Carro apoyado en la superficie de la plataforma
+	var pos := Vector2(plat_pos.x, plat_pos.y - 10.0 - sh * 0.5)
+
+	var body := StaticBody2D.new()
+	body.position = pos
+	body.add_to_group("carro_danio")
+	# Capa 2: el jugador la detecta (añadida en _ready) pero el enemigo volador no
+	body.collision_layer = 2
+	body.collision_mask  = 0
+	add_child(body)
+
+	var col := CollisionShape2D.new()
+	var rect := RectangleShape2D.new()
+	rect.size = Vector2(sw * 0.85, sh)
+	col.shape = rect
+	body.add_child(col)
+
+	var atlas := AtlasTexture.new()
+	atlas.atlas  = _TEXTURA_CARROS
+	atlas.region = region
+	var sprite := Sprite2D.new()
+	sprite.texture        = atlas
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	sprite.scale          = Vector2(ESCALA, ESCALA)
+	sprite.z_index        = 1
+	body.add_child(sprite)
 
 func _programar_respawn(pos: Vector2, es_disp: bool, vida_spawn: int) -> void:
 	await get_tree().create_timer(RESPAWN_DELAY).timeout

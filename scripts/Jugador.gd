@@ -22,6 +22,8 @@ signal objeto_cercano(objeto)
 signal jugador_muerto
 
 func _ready() -> void:
+	add_to_group("jugador")
+	set_collision_mask_value(2, true)  # detecta carros (capa 2) además del mundo (capa 1)
 	sistema_vida = SistemaVida.new()
 	add_child(sistema_vida)
 	sistema_vida.sin_vida.connect(_al_morir)
@@ -41,6 +43,10 @@ func _physics_process(delta: float) -> void:
 	_manejar_movimiento()
 	_manejar_salto()
 	move_and_slide()
+	for i in get_slide_collision_count():
+		if get_slide_collision(i).get_collider().is_in_group("carro_danio"):
+			recibir_danio(1)
+			break
 
 func _set_anim(nombre: StringName) -> void:
 	if animacion.animation != nombre:
