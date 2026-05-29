@@ -422,3 +422,4 @@ func _on_juego_terminado(victoria: bool) -> void:
 		var pantalla: Control = load("res://scenes/PantallaFinal.tscn").instantiate()
 		capa.add_child(pantalla)
 		pantalla.configurar(false, "res://scenes/Nivel1.tscn")
+  
