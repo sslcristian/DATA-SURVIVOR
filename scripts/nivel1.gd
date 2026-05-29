@@ -51,17 +51,24 @@ func _generar_nivel() -> void:
 	_plataforma(Vector2(1150, 120), 180)
 	_plataforma(Vector2(1350,  70), 160)
 
-	_enemigo(Vector2(200,  160))          # melee en suelo
-	_enemigo(Vector2(550,  160))          # melee en suelo
-	_enemigo_disp(Vector2(900,  62))      # francotirador sobre plataforma alta
-	_enemigo(Vector2(1200, 160))          # melee en suelo
+	_enemigo(Vector2(200,  160))
+	_enemigo(Vector2(550,  160))
+	_enemigo(Vector2(1200, 160))
+
+	_enemigo_plat(Vector2(150,  140), 180)
+	_enemigo_plat(Vector2(650,  130), 160)
+	_enemigo_plat(Vector2(1150, 120), 180)
+
+	_enemigo_disp(Vector2(400,  75))
+	_enemigo_disp(Vector2(900,  55))
+	_enemigo_disp(Vector2(1350, 45))
 
 	_obstaculo(Vector2(320,  184))
 	_obstaculo(Vector2(500,  184))
 	_obstaculo(Vector2(700,  184))
 	_obstaculo(Vector2(980,  184))
 
-	_objeto(Vector2(430, 68), "facil")
+	_objeto(Vector2(430, 74), "facil")
 	_lampara(Vector2(100,  184))
 	_lampara(Vector2(480,  184))
 	_lampara(Vector2(780,  184))
@@ -76,10 +83,19 @@ func _generar_nivel() -> void:
 	_plataforma(Vector2(2850,  60), 160)
 
 	_enemigo(Vector2(1700, 160))
-	_enemigo_disp(Vector2(1850,  52))     # francotirador en alto
-	_enemigo(Vector2(2200, 160))
-	_enemigo_disp(Vector2(2350,  62))     # francotirador en alto
-	_enemigo(Vector2(2700, 160))
+	_enemigo(Vector2(2050, 160))
+	_enemigo(Vector2(2450, 160))
+	_enemigo(Vector2(2950, 160))
+
+	_enemigo_plat(Vector2(1600, 110), 200)
+	_enemigo_plat(Vector2(1850,  70), 180)
+	_enemigo_plat(Vector2(2350,  80), 200)
+	_enemigo_plat(Vector2(2600, 110), 180)
+
+	_enemigo_disp(Vector2(1600,  85))
+	_enemigo_disp(Vector2(1850,  45))
+	_enemigo_disp(Vector2(2350,  55))
+	_enemigo_disp(Vector2(2850,  35))
 
 	_obstaculo(Vector2(1550, 184))
 	_obstaculo(Vector2(1800, 184))
@@ -89,7 +105,7 @@ func _generar_nivel() -> void:
 	_obstaculo(Vector2(2650, 184))
 	_obstaculo(Vector2(2800, 184))
 
-	_objeto(Vector2(2100, 102), "media")
+	_objeto(Vector2(2100, 94), "media")
 	_lampara(Vector2(1620, 184))
 	_lampara(Vector2(1900, 184))
 	_lampara(Vector2(2450, 184))
@@ -104,11 +120,21 @@ func _generar_nivel() -> void:
 	_plataforma(Vector2(4350,  65), 160)
 
 	_enemigo(Vector2(3050, 160))
-	_enemigo_disp(Vector2(3350,  42))     # francotirador muy arriba
-	_enemigo(Vector2(3650, 160))
-	_enemigo_disp(Vector2(3850,  57))
-	_enemigo(Vector2(4050, 160))
-	_enemigo_disp(Vector2(4350,  47))
+	_enemigo(Vector2(3500, 160))
+	_enemigo(Vector2(3700, 160))
+	_enemigo(Vector2(4200, 160))
+
+	_enemigo_plat(Vector2(3100,  90), 180)
+	_enemigo_plat(Vector2(3350,  60), 200)
+	_enemigo_plat(Vector2(3600, 110), 160)
+	_enemigo_plat(Vector2(3850,  75), 180)
+	_enemigo_plat(Vector2(4100, 120), 200)
+	_enemigo_plat(Vector2(4350,  65), 160)
+
+	_enemigo_disp(Vector2(3100,  65))
+	_enemigo_disp(Vector2(3350,  35))
+	_enemigo_disp(Vector2(3850,  50))
+	_enemigo_disp(Vector2(4350,  40))
 
 	_obstaculo(Vector2(3100, 184))
 	_obstaculo(Vector2(3250, 184))
@@ -119,7 +145,7 @@ func _generar_nivel() -> void:
 	_obstaculo(Vector2(4350, 184))
 	_obstaculo(Vector2(4450, 184))
 
-	_objeto(Vector2(3600,  92), "media")
+	_objeto(Vector2(3600, 84), "media")
 	_lampara(Vector2(3150, 184))
 	_lampara(Vector2(3500, 184))
 	_lampara(Vector2(4080, 184))
@@ -130,9 +156,16 @@ func _generar_nivel() -> void:
 	_plataforma(Vector2(4900,  70), 200)
 	_plataforma(Vector2(5100, 110), 160)
 
-	_enemigo(Vector2(4700, 160))
-	_enemigo_disp(Vector2(4900,  52))
-	_enemigo_disp(Vector2(5100,  92))
+	_enemigo(Vector2(4750, 160))
+	_enemigo(Vector2(5050, 160))
+
+	_enemigo_plat(Vector2(4650, 100), 180)
+	_enemigo_plat(Vector2(4900,  70), 200)
+	_enemigo_plat(Vector2(5100, 110), 160)
+
+	_enemigo_disp(Vector2(4650,  75))
+	_enemigo_disp(Vector2(4900,  45))
+	_enemigo_disp(Vector2(5100,  85))
 
 	_obstaculo(Vector2(4800, 184))
 	_obstaculo(Vector2(4950, 184))
@@ -147,9 +180,12 @@ func _generar_nivel() -> void:
 
 	# ── Base enemiga final (x 5500) ──────────────────────────────────────────
 	_base_meta(Vector2(5500, 152))
+	_enemigo(Vector2(5280, 160))
 	_enemigo(Vector2(5330, 160))
 	_enemigo(Vector2(5660, 160))
-	_enemigo_disp(Vector2(5500, 90))
+	_enemigo(Vector2(5720, 160))
+	_enemigo_disp(Vector2(5450,  90))
+	_enemigo_disp(Vector2(5550,  90))
 	_lampara(Vector2(5400, 184))
 	_lampara(Vector2(5600, 184))
 
@@ -235,6 +271,24 @@ func _enemigo_disp(pos: Vector2) -> void:
 	var v: int = e.vida
 	e.enemigo_muerto.connect(func(): _programar_respawn(pos, true, v))
 
+func _enemigo_plat(plat_pos: Vector2, ancho: float) -> void:
+	# Y: plat_pos.y - 10 (top de plataforma) - 24 (offset igual al suelo) = plat_pos.y - 34
+	_spawn_plat(Vector2(plat_pos.x, plat_pos.y - 34), ancho, 3)
+
+func _spawn_plat(pos: Vector2, ancho: float, v: int) -> void:
+	var e := ESCENA_ENEMIGO.instantiate()
+	e.vida = v
+	e.position = pos
+	var margen := 12.0
+	e.set("_limite_izq", pos.x - ancho * 0.5 + margen)
+	e.set("_limite_der", pos.x + ancho * 0.5 - margen)
+	add_child(e)
+	e.enemigo_muerto.connect(func():
+		await get_tree().create_timer(RESPAWN_DELAY).timeout
+		if is_inside_tree() and gm.jugando:
+			_spawn_plat(pos, ancho, v)
+	)
+
 func _programar_respawn(pos: Vector2, es_disp: bool, vida_spawn: int) -> void:
 	await get_tree().create_timer(RESPAWN_DELAY).timeout
 	if not is_inside_tree() or not gm.jugando:
@@ -286,10 +340,10 @@ func _on_respuesta_correcta(recompensa: Dictionary) -> void:
 	ui_pregunta.mostrar_resultado(true, r.descripcion())
 	_pregunta_pendiente = false
 
-func _on_respuesta_incorrecta() -> void:
+func _on_respuesta_incorrecta(pista: String) -> void:
 	jugador.recibir_danio(1)
 	hud.actualizar_vida(jugador.sistema_vida.corazones)
-	ui_pregunta.mostrar_resultado(false)
+	ui_pregunta.mostrar_resultado(false, pista)
 	_pregunta_pendiente = false
 
 func _on_jugador_vida_cambiada(corazones: int) -> void:

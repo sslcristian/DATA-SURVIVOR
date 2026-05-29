@@ -9,7 +9,7 @@ var _pregunta_act: Dictionary = {}
 
 signal pregunta_lista(pregunta: Dictionary)
 signal respuesta_correcta(recompensa: Dictionary)
-signal respuesta_incorrecta
+signal respuesta_incorrecta(correcta_texto: String)
 
 func _ready() -> void:
 	_cargar_preguntas()
@@ -42,5 +42,6 @@ func validar_respuesta(indice: int) -> void:
 	if indice == _pregunta_act.correcta:
 		emit_signal("respuesta_correcta", _pregunta_act.recompensa)
 	else:
-		emit_signal("respuesta_incorrecta")
+		var correcta_texto: String = _pregunta_act.opciones[_pregunta_act.correcta]
+		emit_signal("respuesta_incorrecta", correcta_texto)
 	_pregunta_act = {}

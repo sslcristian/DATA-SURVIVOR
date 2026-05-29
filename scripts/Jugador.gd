@@ -48,9 +48,10 @@ func _set_anim(nombre: StringName) -> void:
 
 func _manejar_movimiento() -> void:
 	var anim := animacion.animation
-	if atacando or anim == &"hit" or anim == &"death":
-		if atacando:
-			velocity.x = move_toward(velocity.x, 0, VELOCIDAD)
+	if anim == &"death":
+		return
+	if atacando:
+		velocity.x = move_toward(velocity.x, 0, VELOCIDAD)
 		return
 
 	if Input.is_action_pressed("mover_derecha"):
@@ -115,9 +116,13 @@ func recibir_danio(cantidad: int = 1) -> void:
 	var danio_real: int = max(1, cantidad - defensa)
 	sistema_vida.reducir_vida(danio_real)
 	if sistema_vida.esta_vivo():
-		animacion.play("hit")
 		invulnerable = true
 		timer_inv.start()
+		var tween := create_tween().set_loops(4)
+		tween.tween_property(animacion, "modulate", Color(1.0, 0.15, 0.15, 0.5), 0.06)
+		tween.tween_property(animacion, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.06)
+	else:
+		_al_morir()
 
 func _al_morir() -> void:
 	muerto = true
@@ -131,6 +136,7 @@ func _on_timer_ataque_timeout() -> void:
 
 func _on_timer_invulnerabilidad_timeout() -> void:
 	invulnerable = false
+	animacion.modulate = Color.WHITE
 
 var _objeto_actual: Node = null
 

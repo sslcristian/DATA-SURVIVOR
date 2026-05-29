@@ -4,6 +4,7 @@
 	"opciones": ["Cola", "Pila", "Lista enlazada", "Árbol"],
 	"correcta": 1,
 	"dificultad": "facil",
+	"pista": "Piensa en una pila de platos: solo puedes tomar el último que pusiste.",
 	"recompensa": {"tipo": "vida", "valor": 1}
   },
   {
@@ -11,6 +12,7 @@
 	"opciones": ["Pila", "Árbol binario", "Cola", "Grafo"],
 	"correcta": 2,
 	"dificultad": "facil",
+	"pista": "Imagina una fila de personas: el primero en llegar es el primero en salir.",
 	"recompensa": {"tipo": "vida", "valor": 1}
   },
   {
@@ -18,6 +20,7 @@
 	"opciones": ["enqueue", "insert", "push", "add"],
 	"correcta": 2,
 	"dificultad": "facil",
+	"pista": "Es la misma palabra en inglés que significa empujar algo hacia arriba de la pila.",
 	"recompensa": {"tipo": "danio", "valor": 1}
   },
   {
@@ -25,6 +28,7 @@
 	"opciones": ["pop", "dequeue", "remove", "delete"],
 	"correcta": 1,
 	"dificultad": "facil",
+	"pista": "Tiene el prefijo 'de-' que indica salida, y 'queue' significa cola en inglés.",
 	"recompensa": {"tipo": "danio", "valor": 1}
   },
   {
@@ -32,6 +36,7 @@
 	"opciones": ["O(1)", "O(log n)", "O(n)", "O(n²)"],
 	"correcta": 2,
 	"dificultad": "media",
+	"pista": "No hay índices: debes ir nodo por nodo hasta encontrar el elemento.",
 	"recompensa": {"tipo": "defensa", "valor": 1}
   },
   {
@@ -39,6 +44,7 @@
 	"opciones": ["El nodo con más hijos", "El nodo sin padre", "El nodo hoja", "El nodo más profundo"],
 	"correcta": 1,
 	"dificultad": "facil",
+	"pista": "Es el punto de partida del árbol. Por encima de él no hay ningún otro nodo.",
 	"recompensa": {"tipo": "vida", "valor": 1}
   },
   {
@@ -46,6 +52,7 @@
 	"opciones": ["O(n)", "O(n²)", "O(log n)", "O(1)"],
 	"correcta": 2,
 	"dificultad": "media",
+	"pista": "Cada comparación descarta la mitad del árbol restante.",
 	"recompensa": {"tipo": "danio", "valor": 2}
   },
   {
@@ -53,6 +60,7 @@
 	"opciones": ["Arista", "Vértice", "Nodo", "Camino"],
 	"correcta": 0,
 	"dificultad": "facil",
+	"pista": "Viene del latín 'aresta' (borde). Es la línea que une dos puntos del grafo.",
 	"recompensa": {"tipo": "vida", "valor": 1}
   },
   {
@@ -60,6 +68,7 @@
 	"opciones": ["Búsqueda lineal", "Búsqueda binaria", "BFS", "DFS"],
 	"correcta": 1,
 	"dificultad": "media",
+	"pista": "No puedes dividir algo por la mitad si no sabes dónde está el centro.",
 	"recompensa": {"tipo": "danio", "valor": 2}
   },
   {
@@ -67,6 +76,7 @@
 	"opciones": ["O(n log n)", "O(n)", "O(n²)", "O(log n)"],
 	"correcta": 2,
 	"dificultad": "media",
+	"pista": "En el peor caso compara cada elemento contra todos los demás.",
 	"recompensa": {"tipo": "defensa", "valor": 1}
   },
   {
@@ -74,6 +84,7 @@
 	"opciones": ["Pila", "Cola", "Árbol AVL", "Heap"],
 	"correcta": 1,
 	"dificultad": "media",
+	"pista": "BFS explora nivel por nivel como una ola. ¿Qué estructura respeta el orden de llegada?",
 	"recompensa": {"tipo": "danio", "valor": 2}
   },
   {
@@ -81,6 +92,7 @@
 	"opciones": ["Cola", "Lista", "Pila", "Grafo"],
 	"correcta": 2,
 	"dificultad": "media",
+	"pista": "DFS va tan profundo como puede antes de retroceder. ¿Qué estructura recuerda el camino de vuelta?",
 	"recompensa": {"tipo": "danio", "valor": 2}
   },
   {
@@ -88,6 +100,7 @@
 	"opciones": ["Acceso aleatorio O(1)", "Inserción y eliminación eficiente en cualquier posición", "Menor uso de memoria", "Búsqueda más rápida"],
 	"correcta": 1,
 	"dificultad": "media",
+	"pista": "Los arreglos tienen que mover elementos al insertar; las listas solo cambian punteros.",
 	"recompensa": {"tipo": "defensa", "valor": 1}
   },
   {
@@ -95,6 +108,7 @@
 	"opciones": ["Árbol binario simple", "Árbol AVL", "Árbol B", "Árbol de decisión"],
 	"correcta": 1,
 	"dificultad": "dificil",
+	"pista": "Su nombre son las iniciales de sus inventores: Adelson-Velsky y Landis.",
 	"recompensa": {"tipo": "vida", "valor": 2}
   },
   {
@@ -102,6 +116,7 @@
 	"opciones": ["Nodo", "Pivote", "Centinela", "Raíz"],
 	"correcta": 1,
 	"dificultad": "media",
+	"pista": "Es el elemento alrededor del cual gira toda la partición del arreglo.",
 	"recompensa": {"tipo": "danio", "valor": 2}
   },
   {
@@ -109,6 +124,7 @@
 	"opciones": ["O(n²)", "O(n)", "O(n log n)", "O(log n)"],
 	"correcta": 2,
 	"dificultad": "dificil",
+	"pista": "Siempre divide a la mitad (log n niveles) y en cada nivel procesa todos los elementos (n).",
 	"recompensa": {"tipo": "vida", "valor": 2}
   },
   {
@@ -116,6 +132,7 @@
 	"opciones": ["Tienen exactamente 2 hijos", "No tienen hijos", "Son la raíz", "Tienen más de 2 hijos"],
 	"correcta": 1,
 	"dificultad": "facil",
+	"pista": "Como las hojas de un árbol real: están al final de las ramas, sin continuar.",
 	"recompensa": {"tipo": "vida", "valor": 1}
   },
   {
@@ -123,6 +140,7 @@
 	"opciones": ["1", "2", "3", "0"],
 	"correcta": 1,
 	"dificultad": "facil",
+	"pista": "Se llama 'doblemente' porque cada nodo apunta en dos direcciones: siguiente y anterior.",
 	"recompensa": {"tipo": "vida", "valor": 1}
   },
   {
@@ -130,6 +148,7 @@
 	"opciones": ["Bubble Sort", "Insertion Sort", "Merge Sort", "Selection Sort"],
 	"correcta": 2,
 	"dificultad": "dificil",
+	"pista": "Bubble e Insertion mejoran con datos ya ordenados. Este siempre divide por la mitad sin importar el orden.",
 	"recompensa": {"tipo": "danio", "valor": 3}
   },
   {
@@ -137,6 +156,7 @@
 	"opciones": ["Camino simple", "Ciclo", "Arista", "Componente"],
 	"correcta": 1,
 	"dificultad": "media",
+	"pista": "Es como un viaje circular: sigues las aristas y terminas donde empezaste.",
 	"recompensa": {"tipo": "defensa", "valor": 1}
   },
   {
@@ -144,6 +164,7 @@
 	"opciones": ["O(1)", "O(log n)", "O(n)", "O(n²)"],
 	"correcta": 1,
 	"dificultad": "legendario",
+	"pista": "El árbol siempre está balanceado, así que su altura máxima nunca supera log n.",
 	"recompensa": {"tipo": "legendario", "valor": 1}
   }
 ]

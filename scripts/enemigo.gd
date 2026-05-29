@@ -19,6 +19,9 @@ var _dir_patrulla := 1
 var _tiempo_atk   := 0.0
 var _jugador: Node2D = null
 
+var _limite_izq: float = -INF
+var _limite_der: float =  INF
+
 @onready var animacion   : AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox      : Area2D           = $Hitbox
 @onready var detector    : Area2D           = $Detector
@@ -56,7 +59,12 @@ func _patrullar() -> void:
 	animacion.play("walk")
 
 	var pos_x := global_position.x
-	if punto_a and punto_b:
+	if _limite_izq > -INF or _limite_der < INF:
+		if _dir_patrulla == 1 and pos_x >= _limite_der:
+			_dir_patrulla = -1
+		elif _dir_patrulla == -1 and pos_x <= _limite_izq:
+			_dir_patrulla = 1
+	elif punto_a and punto_b:
 		if _dir_patrulla == 1 and pos_x >= punto_b.global_position.x:
 			_dir_patrulla = -1
 		elif _dir_patrulla == -1 and pos_x <= punto_a.global_position.x:

@@ -312,10 +312,10 @@ func _on_respuesta_correcta(recompensa: Dictionary) -> void:
 	ui_pregunta.mostrar_resultado(true, r.descripcion())
 	_pregunta_pendiente = false
 
-func _on_respuesta_incorrecta() -> void:
+func _on_respuesta_incorrecta(pista: String) -> void:
 	jugador.recibir_danio(1)
 	hud.actualizar_vida(jugador.sistema_vida.corazones)
-	ui_pregunta.mostrar_resultado(false)
+	ui_pregunta.mostrar_resultado(false, pista)
 	_pregunta_pendiente = false
 
 func _on_jugador_vida_cambiada(corazones: int) -> void:

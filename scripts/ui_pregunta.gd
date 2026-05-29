@@ -41,7 +41,7 @@ func mostrar_resultado(correcto: bool, recompensa_desc: String = "") -> void:
 		label_resultado.text = "¡Correcto! " + recompensa_desc
 		label_resultado.add_theme_color_override("font_color", Color(0.2, 1.0, 0.4, 1.0))
 	else:
-		label_resultado.text = "Incorrecto. -1 corazon"
+		label_resultado.text = "Incorrecto. -1 corazon\nRespuesta correcta: " + recompensa_desc
 		label_resultado.add_theme_color_override("font_color", Color(1.0, 0.25, 0.25, 1.0))
 	for b in botones:
 		b.disabled = true

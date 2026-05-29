@@ -25,47 +25,47 @@ script = ExtResource("6_nivel_script")
 
 [node name="CapaCielo" type="ParallaxLayer" parent="Fondo" unique_id=1808007604]
 motion_scale = Vector2(0.05, 0)
-motion_mirroring = Vector2(480, 0)
+motion_mirroring = Vector2(634, 0)
 
 [node name="Cielo" type="Sprite2D" parent="Fondo/CapaCielo" unique_id=2133339193]
-position = Vector2(0, 160)
-scale = Vector2(0.25, 0.25)
+position = Vector2(0, 120)
+scale = Vector2(0.33, 0.33)
 texture = ExtResource("8_sky")
 
 [node name="CapaNubes" type="ParallaxLayer" parent="Fondo" unique_id=521998907]
 motion_scale = Vector2(0.09, 0)
-motion_mirroring = Vector2(480, 0)
+motion_mirroring = Vector2(634, 0)
 
 [node name="Nubes" type="Sprite2D" parent="Fondo/CapaNubes" unique_id=533974530]
-position = Vector2(0, 100)
-scale = Vector2(0.25, 0.25)
+position = Vector2(0, 80)
+scale = Vector2(0.33, 0.33)
 texture = ExtResource("9_clouds")
 
 [node name="CapaEdificios" type="ParallaxLayer" parent="Fondo" unique_id=1918770172]
 motion_scale = Vector2(0.2, 0)
-motion_mirroring = Vector2(480, 0)
+motion_mirroring = Vector2(634, 0)
 
 [node name="Edificios" type="Sprite2D" parent="Fondo/CapaEdificios" unique_id=1592629101]
-position = Vector2(0, 160)
-scale = Vector2(0.25, 0.25)
+position = Vector2(0, 120)
+scale = Vector2(0.33, 0.33)
 texture = ExtResource("10_bg")
 
 [node name="CapaRuinas" type="ParallaxLayer" parent="Fondo" unique_id=345036891]
 motion_scale = Vector2(0.32, 0)
-motion_mirroring = Vector2(480, 0)
+motion_mirroring = Vector2(634, 0)
 
 [node name="Ruinas" type="Sprite2D" parent="Fondo/CapaRuinas" unique_id=1952099888]
-position = Vector2(0, 155)
-scale = Vector2(0.25, 0.25)
+position = Vector2(0, 120)
+scale = Vector2(0.33, 0.33)
 texture = ExtResource("11_ruinas")
 
 [node name="CapaTerreno" type="ParallaxLayer" parent="Fondo" unique_id=736772854]
 motion_scale = Vector2(0.65, 0)
-motion_mirroring = Vector2(480, 0)
+motion_mirroring = Vector2(634, 0)
 
 [node name="Terreno" type="Sprite2D" parent="Fondo/CapaTerreno" unique_id=368861302]
-position = Vector2(0, 145)
-scale = Vector2(0.25, 0.25)
+position = Vector2(0, 120)
+scale = Vector2(0.33, 0.33)
 texture = ExtResource("12_road")
 
 [node name="GameManager" type="Node" parent="." unique_id=233074464]
