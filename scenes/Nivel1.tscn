@@ -400,7 +400,7 @@ region_enabled = true
 region_rect = Rect2(-0.3079071, 28.066624, 311.5434, 84.91786)
 
 [node name="Jugador" parent="." unique_id=1712488837 instance=ExtResource("1_jugador")]
-position = Vector2(-300, 160)
+position = Vector2(471, 139)
 
 [node name="UI_Pregunta" parent="." unique_id=1248173733 instance=ExtResource("4_ui_pregunta")]
 
@@ -408,7 +408,7 @@ position = Vector2(-300, 160)
 position = Vector2(-597, 111)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=76578324]
-position = Vector2(131, -15.125)
+position = Vector2(770, -30)
 shape = SubResource("RectangleShape2D_n60y6")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=2145547912]
