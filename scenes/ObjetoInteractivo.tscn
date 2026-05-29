@@ -1,25 +1,27 @@
 [gd_scene format=3 uid="uid://dobjinter1"]
 
-[ext_resource type="Script" path="res://scripts/objeto_interactivo.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/objetos/obstacles-and-objects.png" id="2_texture"]
+[ext_resource type="Script" uid="uid://c2xcj5monbwvb" path="res://scripts/objeto_interactivo.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://30jdhibdwvcg" path="res://assets/objetos/PC DE PREGUNTAS.png" id="2_rkep7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_col"]
-size = Vector2(24, 32)
+size = Vector2(12, 24)
 
-[sub_resource type="AtlasTexture" id="AT_cofre"]
-atlas = ExtResource("2_texture")
-region = Rect2(0, 0, 32, 32)
-
-[node name="ObjetoInteractivo" type="StaticBody2D" groups=["interactivo"]]
+[node name="ObjetoInteractivo" type="StaticBody2D" unique_id=1000370924 groups=["interactivo"]]
 script = ExtResource("1_script")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AT_cofre")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=182826770]
+position = Vector2(0, 2)
+scale = Vector2(0.03931883, 0.043254234)
+texture = ExtResource("2_rkep7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=834853998]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_col")
 
-[node name="LabelE" type="Label" parent="."]
-position = Vector2(-10, -36)
-text = "[E]"
+[node name="LabelE" type="Label" parent="." unique_id=267113947]
 visible = false
+offset_left = -10.0
+offset_top = -36.0
+offset_right = -10.0
+offset_bottom = -36.0
+text = "[E]"
