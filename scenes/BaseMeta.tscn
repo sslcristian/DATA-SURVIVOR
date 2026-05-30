@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dbasemeta001a"]
 
-[ext_resource type="Script" path="res://scripts/base_meta.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://c1ptrkljwstki" path="res://scripts/base_meta.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://dptvtwy0ycmiy" path="res://assets/escenario/Pale/BASE FINAL.png" id="2_tex"]
 
 [sub_resource type="RectangleShape2D" id="Shape_wall"]
@@ -9,25 +9,24 @@ size = Vector2(100, 200)
 [sub_resource type="RectangleShape2D" id="Shape_area"]
 size = Vector2(200, 230)
 
-[node name="BaseMeta" type="StaticBody2D"]
+[node name="BaseMeta" type="StaticBody2D" unique_id=1127891212]
 script = ExtResource("1_script")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1738086772]
 position = Vector2(0, -100)
 shape = SubResource("Shape_wall")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=645870047]
 texture_filter = 1
-position = Vector2(0, -104)
+position = Vector2(0, -99)
 scale = Vector2(0.28967816, 0.4143105)
 texture = ExtResource("2_tex")
 region_enabled = true
 region_rect = Rect2(2.7499695, 257.5, 1399.5, 504)
 
-[node name="AreaDeteccion" type="Area2D" parent="."]
+[node name="AreaDeteccion" type="Area2D" parent="." unique_id=574116933]
 collision_layer = 0
-collision_mask = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion" unique_id=1585385401]
 position = Vector2(0, -115)
 shape = SubResource("Shape_area")
