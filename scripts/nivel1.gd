@@ -200,7 +200,7 @@ func _generar_nivel() -> void:
 	_lampara(Vector2(5200, 184))
 
 	# ── Base enemiga final (x 5500) ──────────────────────────────────────────
-	_base_meta(Vector2(5500, 152))
+	_base_meta(Vector2(5500, 184))
 	_enemigo(Vector2(5280, 160))
 	_enemigo(Vector2(5330, 160))
 	_enemigo(Vector2(5660, 160))
@@ -375,6 +375,7 @@ func _base_meta(pos: Vector2) -> void:
 	var obj := ESCENA_BASE_META.instantiate()
 	obj.position = pos
 	add_child(obj)
+	obj.alcanzada.connect(_on_base_alcanzada)
 
 # ─── Callbacks de señales ─────────────────────────────────────────────────────
 
@@ -411,17 +412,15 @@ func _on_respuesta_incorrecta(pista: String) -> void:
 func _on_jugador_vida_cambiada(corazones: int) -> void:
 	hud.actualizar_vida(corazones)
 
+func _on_base_alcanzada() -> void:
+	gm.terminar_juego(true)
+
 func _on_juego_terminado(victoria: bool) -> void:
-	if victoria:
-		hud.mostrar_mensaje("¡NIVEL 1 COMPLETADO! Siguiente nivel...", 2.0)
-		await get_tree().create_timer(2.0).timeout
-		get_tree().change_scene_to_file("res://scenes/Nivel2.tscn")
-	else:
-		MusicManager.stop()
-		var capa := CanvasLayer.new()
-		capa.layer = 100
-		get_tree().root.add_child(capa)
-		var pantalla: Control = load("res://scenes/PantallaFinal.tscn").instantiate()
-		capa.add_child(pantalla)
-		pantalla.configurar(false, "res://scenes/Nivel1.tscn")
+	MusicManager.stop()
+	var capa := CanvasLayer.new()
+	capa.layer = 100
+	get_tree().root.add_child(capa)
+	var pantalla: Control = load("res://scenes/PantallaFinal.tscn").instantiate()
+	capa.add_child(pantalla)
+	pantalla.configurar(victoria, "res://scenes/Nivel1.tscn")
   

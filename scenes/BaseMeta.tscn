@@ -1,33 +1,33 @@
 [gd_scene format=3 uid="uid://dbasemeta001a"]
 
-[ext_resource type="Script" uid="uid://c2xcj5monbwvb" path="res://scripts/objeto_interactivo.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://dptvtwy0ycmiy" path="res://assets/escenario/Pale/BASE FINAL.png" id="2_y3mcn"]
+[ext_resource type="Script" path="res://scripts/base_meta.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dptvtwy0ycmiy" path="res://assets/escenario/Pale/BASE FINAL.png" id="2_tex"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_col"]
-size = Vector2(131.5, 275.5)
+[sub_resource type="RectangleShape2D" id="Shape_wall"]
+size = Vector2(100, 200)
 
-[node name="BaseMeta" type="StaticBody2D" unique_id=529527677 groups=["interactivo"]]
+[sub_resource type="RectangleShape2D" id="Shape_area"]
+size = Vector2(200, 230)
+
+[node name="BaseMeta" type="StaticBody2D"]
 script = ExtResource("1_script")
-dificultad = "legendario"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1704622047]
-position = Vector2(120.25, -108.25)
-shape = SubResource("RectangleShape2D_col")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -100)
+shape = SubResource("Shape_wall")
 
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D" unique_id=1878347256]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-52.25, 131.25)
+position = Vector2(0, -104)
 scale = Vector2(0.28967816, 0.4143105)
-texture = ExtResource("2_y3mcn")
+texture = ExtResource("2_tex")
 region_enabled = true
 region_rect = Rect2(2.7499695, 257.5, 1399.5, 504)
 
-[node name="LabelE" type="Label" parent="." unique_id=1193861102]
-visible = false
-offset_left = -36.0
-offset_top = -52.0
-offset_right = -36.0
-offset_bottom = -52.0
-theme_override_colors/font_color = Color(1, 0.9, 0.1, 1)
-theme_override_font_sizes/font_size = 13
-text = "[E] ¡OBJETIVO!"
+[node name="AreaDeteccion" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion"]
+position = Vector2(0, -115)
+shape = SubResource("Shape_area")
