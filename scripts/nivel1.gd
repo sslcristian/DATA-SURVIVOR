@@ -16,6 +16,7 @@ const RESPAWN_DELAY       := 6.0
 @onready var gm          : Node            = $GameManager
 
 var _pregunta_pendiente: bool = false
+var _pregunta_final:    bool = false
 
 func _ready() -> void:
 	get_tree().debug_collisions_hint = false
@@ -395,6 +396,13 @@ func _on_opcion_seleccionada(indice: int) -> void:
 	gm.controlador_pregunta.validar_respuesta(indice)
 
 func _on_respuesta_correcta(recompensa: Dictionary) -> void:
+	if _pregunta_final:
+		_pregunta_pendiente = false
+		_pregunta_final = false
+		ui_pregunta.mostrar_resultado(true, "¡Correcto! ¡Nivel completado!")
+		await get_tree().create_timer(2.0).timeout
+		gm.terminar_juego(true)
+		return
 	var tipo_str: String = recompensa.tipo.to_upper()
 	var r := Recompensa.new(Recompensa.Tipo[tipo_str], recompensa.valor)
 	r.aplicar(jugador)
@@ -404,6 +412,13 @@ func _on_respuesta_correcta(recompensa: Dictionary) -> void:
 	_pregunta_pendiente = false
 
 func _on_respuesta_incorrecta(pista: String) -> void:
+	if _pregunta_final:
+		_pregunta_pendiente = false
+		_pregunta_final = false
+		ui_pregunta.mostrar_resultado(false, pista)
+		await get_tree().create_timer(2.0).timeout
+		gm.terminar_juego(false)
+		return
 	jugador.recibir_danio(1)
 	hud.actualizar_vida(jugador.sistema_vida.corazones)
 	ui_pregunta.mostrar_resultado(false, pista)
@@ -413,7 +428,11 @@ func _on_jugador_vida_cambiada(corazones: int) -> void:
 	hud.actualizar_vida(corazones)
 
 func _on_base_alcanzada() -> void:
-	gm.terminar_juego(true)
+	if _pregunta_pendiente:
+		return
+	_pregunta_pendiente = true
+	_pregunta_final = true
+	gm.controlador_pregunta.mostrar_pregunta("dificil")
 
 func _on_juego_terminado(victoria: bool) -> void:
 	MusicManager.stop()
