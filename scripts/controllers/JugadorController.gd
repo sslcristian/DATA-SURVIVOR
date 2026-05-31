@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const VELOCIDAD    := 200.0
-const FUERZA_SALTO := -600.0
+const FUERZA_SALTO := -420.0
 const GRAVEDAD     := 980.0
 
 var modelo := JugadorModel.new()
