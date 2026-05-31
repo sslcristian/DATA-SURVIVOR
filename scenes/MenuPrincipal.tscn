@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dmenu00001"]
 
-[ext_resource type="Script" uid="uid://bkww8edrch3gb" path="res://scripts/menu_principal.gd" id="1_script"]
+[ext_resource type="Script" path="res://scripts/views/MenuPrincipal.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://dqbub75abvov7" path="res://assets/objetos/MENU.png" id="2_q4epk"]
 [ext_resource type="Texture2D" uid="uid://b5ihao6u7ftax" path="res://assets/objetos/boton SALIR 1.png" id="4_4o3yp"]
 [ext_resource type="Texture2D" uid="uid://b50ugtjjr5phq" path="res://assets/objetos/boton salir 2.png" id="4_4togl"]

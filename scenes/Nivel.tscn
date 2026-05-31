@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dugador11111"]
 
-[ext_resource type="Script" uid="uid://c7xc3nj3sk52y" path="res://scripts/Jugador.gd" id="1_script"]
+[ext_resource type="Script" path="res://scripts/controllers/JugadorController.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://3w27uy54ktob" path="res://assets/personaje/Assault-Class.png" id="2_texture"]
 [ext_resource type="Texture2D" uid="uid://bkjavb2v6td66" path="res://assets/personaje/Sniper-Class.png" id="3_lw3u7"]
 

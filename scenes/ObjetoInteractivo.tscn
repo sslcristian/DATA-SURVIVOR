@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dobjinter1"]
 
-[ext_resource type="Script" uid="uid://c2xcj5monbwvb" path="res://scripts/objeto_interactivo.gd" id="1_script"]
+[ext_resource type="Script" path="res://scripts/controllers/ObjetoInteractivo.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://30jdhibdwvcg" path="res://assets/objetos/PC DE PREGUNTAS.png" id="2_rkep7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_col"]

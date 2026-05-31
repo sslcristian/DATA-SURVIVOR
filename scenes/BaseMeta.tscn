@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dbasemeta001a"]
 
-[ext_resource type="Script" uid="uid://c1ptrkljwstki" path="res://scripts/base_meta.gd" id="1_script"]
+[ext_resource type="Script" path="res://scripts/controllers/BaseMeta.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://dptvtwy0ycmiy" path="res://assets/escenario/Pale/BASE FINAL.png" id="2_tex"]
 
 [sub_resource type="RectangleShape2D" id="Shape_wall"]

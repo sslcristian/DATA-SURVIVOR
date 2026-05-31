@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dpfinal001"]
 
-[ext_resource type="Script" uid="uid://bxwhim6uq03ef" path="res://scripts/pantalla_final.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://db22sd28aakgi" path="res://scripts/views/PantallaFinal.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://fi3fw7nwjfsu" path="res://assets/objetos/FINAL.png" id="2_dfpfr"]
 [ext_resource type="Texture2D" uid="uid://1j35lm33qrua" path="res://icon.svg" id="3_txykc"]
 [ext_resource type="Texture2D" uid="uid://k3ak63eqgc1o" path="res://assets/objetos/BOTONES FINAL REINTENTAR 1.png" id="4_7n3it"]

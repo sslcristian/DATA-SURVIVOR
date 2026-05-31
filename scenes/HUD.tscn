@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dhud000001"]
 
-[ext_resource type="Script" uid="uid://2c717hngoqv0" path="res://scripts/hud.gd" id="1_script"]
+[ext_resource type="Script" path="res://scripts/views/HUD.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/objetos/monitor_personaje.png" id="2_monitor"]
 
 [node name="HUD" type="CanvasLayer"]
